@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "57315767839",
+    "firebase_url": "https://kayilarcarpet.firebaseio.com",
+    "project_id": "kayilarcarpet",
+    "storage_bucket": "kayilarcarpet.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57315767839:android:da27fc4a37276710ce472a",
+        "android_client_info": {
+          "package_name": "com.madeveloper.kayilarcarpet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57315767839-i2tiq6ts9f4e2d6bugc93b20srqi1lij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDldt_WeXrZRHB_iip5MbalA2c4zBLbkR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57315767839-i2tiq6ts9f4e2d6bugc93b20srqi1lij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

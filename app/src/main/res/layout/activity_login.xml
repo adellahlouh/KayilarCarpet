@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background"
+    tools:context=".activity.LoginActivity">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription" />
+
+    <ViewFlipper
+        android:id="@+id/viewFlipperLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="32dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txLoginHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_number_phone"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/colorAccent"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/codePickerLogin"
+                android:layout_below="@+id/txLoginHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="30dp"
+                app:ccp_showFlag="true"
+                app:ccp_showNameCode="false"
+                app:ccp_textSize="16sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txPhoneLogin"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txLoginHint"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_toEndOf="@id/codePickerLogin">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPhoneLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_mobile"
+                    android:fontFamily="@font/poppins_medium"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:maxLength="9"
+                    android:textSize="14sp"
+                    tools:ignore="Autofill,TextFields" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txPhoneLogin"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:maxLength="9"
+                android:backgroundTint="#04c18d"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/login"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                app:cornerRadius="8dp" />
+
+            <LinearLayout
+                android:id="@+id/laySignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/btLogin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/you_don_t_have_an_account"
+                    android:textSize="15sp"
+                    android:textColor="@color/color_font"
+                    android:fontFamily="@font/poppins_medium"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up"
+                    android:textSize="16sp"
+                    android:textColor="@color/colorAccent"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"
+                    android:fontFamily="@font/poppins_medium"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardVerification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <RelativeLayout
+                    android:id="@+id/layVerification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.chaos.view.PinView
+                        android:id="@+id/pinViewLogin"
+                        style="@style/PinWidget.PinView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:inputType="number"
+                        android:padding="10dp"
+                        android:textSize="18sp"
+                        app:itemCount="6"
+                        app:itemHeight="48dp"
+                        app:itemRadius="10dp"
+                        app:lineColor="@android:color/darker_gray"
+                        app:viewType="rectangle" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btVerificationLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pinViewLogin"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="#04c18d"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:text="@string/check_code"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp" />
+
+                    <TextView
+                        android:id="@+id/txResend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/btVerificationLogin"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poppins_medium"
+
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/resend_code_one_more_time"
+                        android:textColor="@color/colorAccent" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/vLine"
+                android:layout_width="3dp"
+                android:layout_height="32dp"
+                android:background="#FFFFFF"
+                android:layout_below="@+id/cardVerification"
+                android:layout_centerHorizontal="true"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vLine"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btPrevious"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="#04c18d"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:textAlignment="center"
+                    android:text="@string/previous"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="8dp"
+                    app:icon="@drawable/ic_previous" />
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+
+
+    </ViewFlipper>
+
+</RelativeLayout>

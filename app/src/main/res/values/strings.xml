@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">KayilarCarpet</string>
+    <string name="login">Login</string>
+    <string name="enter_your_full_name">Enter your full name</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="yyyy_mm_dd">YYYY/MM/DD</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="there_was_some_error_in_login_in">There was some error in Login in.</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="the_verification_code_entered_was_invalid">The verification code entered was invalid</string>
+    <string name="please_enter_verfi_code">Please enter verify code !</string>
+    <string name="resend_code_one_more_time">Resend code one more time</string>
+    <string name="enter_your_age">Enter your Age</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="add_your_phone_number">Add your Phone number</string>
+    <string name="birth_date">Birth Date</string>
+    <string name="enter_your_phone_number_in_order_to_send_your_otp_security_code">Enter your phone number in order to send your OTP security code.</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="you_have_already_account">You have already Account?</string>
+    <string name="check_code">Check Code</string>
+    <string name="previous">Previous</string>
+    <string name="select_your_gender">Select your Gender</string>
+    <string name="login_number_phone">Login Number Phone</string>
+    <string name="you_don_t_have_an_account">You don\'t have an Account?</string>
+    <string name="upload_data">Upload Data ...</string>
+    <string name="this_user_already_exists">This user already exists</string>
+    <string name="this_number_is_not_sign_up_before_please_sign_up_first">This number is not Sign Up before, please Sign Up first.</string>
+    <string name="save_user">saveUser</string>
+    <string name="home">Home</string>
+    <string name="cart">Cart</string>
+    <string name="favorite">Favorite</string>
+    <string name="account">Account</string>
+    <string name="shop">Shop</string>
+</resources>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".activity.SignUpActivity">
+
+
+
+    <ViewFlipper
+        android:id="@+id/flipperVerification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        tools:ignore="UselessParent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/img_logo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/txAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_logo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/add_your_phone_number"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp" />
+
+            <TextView
+                android:id="@+id/txDes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txAdd"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:text="@string/enter_your_phone_number_in_order_to_send_your_otp_security_code"
+                android:textColor="#F3EFEF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txDes"
+                android:layout_centerInParent="true"
+                android:layout_margin="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txName"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="32dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_person"
+                            android:drawablePadding="4dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:hint="@string/enter_your_full_name"
+                            android:inputType="textPersonName"
+                            android:textSize="14sp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txAge"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txName"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:hint="@string/birth_date"
+
+                        android:layout_marginEnd="32dp">
+
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableStart="@drawable/ic_date"
+                            android:drawablePadding="4dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:inputType="date"
+                            tools:ignore="Autofill,TextFields" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.hbb20.CountryCodePicker
+                        android:id="@+id/codePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txAge"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="30dp"
+                        app:ccp_showFlag="false"
+                        app:ccp_showNameCode="false"
+                        app:ccp_textSize="16sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/txPhone"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txAge"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_toEndOf="@id/codePicker">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:drawableEnd="@drawable/ic_mobile"
+                            android:fontFamily="@font/poppins_medium"
+                            android:hint="@string/phone_number"
+                            android:maxLength="9"
+                            android:inputType="phone"
+                            android:paddingStart="10dp"
+                            android:paddingEnd="10dp"
+                            android:textSize="14sp"
+                            tools:ignore="Autofill,TextFields" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <RadioGroup
+                        android:id="@+id/rdGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/txPhone"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rdMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/male"
+                            android:textColor="@color/color_font" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rdFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/female"
+                            android:textColor="@color/color_font" />
+                    </RadioGroup>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/rdGroup"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="#04c18d"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:text="@string/sign_up"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp" />
+
+                    <LinearLayout
+                        android:id="@+id/layLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/btLogin"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txAlready"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/you_have_already_account"
+                            android:textColor="@color/color_font" />
+
+                        <TextView
+                            android:id="@+id/txLogin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="@string/login"
+                            android:textColor="#04c18d"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+
+                            />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardVerification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp"
+                >
+
+                <RelativeLayout
+                    android:id="@+id/layVerification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    >
+
+                    <com.chaos.view.PinView
+                        android:id="@+id/pinView"
+                        style="@style/PinWidget.PinView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:inputType="number"
+                        android:padding="10dp"
+                        android:textSize="18sp"
+                        app:itemCount="6"
+                        app:itemHeight="48dp"
+                        app:itemRadius="10dp"
+                        app:lineColor="@android:color/darker_gray"
+                        app:viewType="rectangle" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btVerification"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/pinView"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:backgroundTint="#04c18d"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:padding="12dp"
+                        android:text="@string/check_code"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        app:cornerRadius="8dp" />
+
+                    <TextView
+                        android:id="@+id/txResend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/btVerification"
+                        android:layout_centerHorizontal="true"
+                        android:fontFamily="@font/poppins_medium"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/resend_code_one_more_time"
+                        android:textColor="@color/color_font" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:id="@+id/vLine"
+                android:layout_width="3dp"
+                android:layout_height="32dp"
+                android:background="#FFFFFF"
+                android:layout_below="@+id/cardVerification"
+                android:layout_centerHorizontal="true"
+                />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vLine"
+                android:layout_gravity="center"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="8dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btPrevious"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:backgroundTint="#04c18d"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:padding="12dp"
+                    android:textAlignment="center"
+                    android:text="@string/previous"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="8dp"
+                    app:icon="@drawable/ic_previous" />
+
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
+
+    </ViewFlipper>
+
+
+</RelativeLayout>
