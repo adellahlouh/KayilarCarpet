@@ -9,13 +9,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.chaos.view.PinView;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -27,7 +27,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -71,6 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -254,7 +254,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         loginTrackerDoc.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()){
-                startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 finish();
             }else {
                 DocumentReference userDocument = db.collection(Constant.USERS_COLLECTION).document(firebaseUser.getUid());
@@ -281,7 +281,7 @@ public class SignUpActivity extends AppCompatActivity {
                     Util.saveUser(this,user);
 
                     progressHUD.dismiss();
-                    startActivity(new Intent(SignUpActivity.this, HomeActivity.class));
+                    startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                     finish();
 
                 });

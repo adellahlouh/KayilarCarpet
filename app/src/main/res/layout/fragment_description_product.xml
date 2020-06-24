@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fancy="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activity.DescriptionProductActivity">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/SliderDescription_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            app:cardCornerRadius="2dp"
+            app:cardElevation="16dp">
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="228dp"
+                android:background="@color/colorPrimaryDark"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderAutoCycleEnabled="true"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="@color/colorPrimary"
+                app:sliderScrollTimeInSec="1800"
+                app:sliderStartAutoCycle="true">
+
+            </com.smarteist.autoimageslider.SliderView>
+
+            <TextView
+                android:id="@+id/offer_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="16dp"
+                android:background="@color/red"
+                android:fontFamily="@font/poppins_medium"
+                android:paddingStart="2dp"
+                android:paddingEnd="6dp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:visibility="gone"
+                tools:text=" OFF 20%"
+                tools:visibility="visible" />
+
+
+            <com.like.LikeButton
+                android:id="@+id/fav_btn"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_below="@id/nameProduct_tx"
+                android:layout_gravity="end"
+                android:layout_margin="12dp"
+                app:icon_size="28dp"
+                app:icon_type="heart" />
+
+            <ImageView
+                android:id="@+id/back_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:padding="12dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_arrow_back"
+                tools:ignore="ContentDescription,UnusedAttribute" />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+        <TextView
+            android:id="@+id/nameProduct_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/SliderDescription_card"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="#212121"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            tools:text="Carpet of the United States of America" />
+
+
+        <TextView
+            android:id="@+id/description_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameProduct_tx"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            tools:text="I am going to try and get a few things to do in the next couple of days and I will be able to address the client's objectives and the others will be able to address the client's objectives and the
+I am going to try and get a few things to do in the next couple of days and I will be able to address the client's objectives and the others will be able to address the client's objectives and the" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:padding="8dp"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:id="@+id/productPrice_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingStart="8dp"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                tools:ignore="RtlSymmetry"
+                tools:text="35 JD" />
+
+            <TextView
+                android:id="@+id/productOldPrice_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:padding="4dp"
+                android:textColor="@color/red"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:ignore="SmallSp"
+                tools:text="16 JD"
+                tools:visibility="visible" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <mehdi.sakout.fancybuttons.FancyButton
+                android:id="@+id/addToCart_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:padding="12dp"
+                fancy:fb_borderColor="@color/white"
+                fancy:fb_borderWidth="1.5dp"
+                fancy:fb_defaultColor="@color/colorPrimary"
+                fancy:fb_focusColor="@color/colorAccent"
+                fancy:fb_iconPosition="left"
+                fancy:fb_iconResource="@drawable/ic_add_shopping_cart"
+                fancy:fb_radius="4dp"
+                fancy:fb_text="Add To Cart"
+                fancy:fb_textSize="16sp"
+                fancy:fb_useSystemFont="true" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+</layout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.madeveloper.kayilarcarpet.fragments.HomeFragment"
+        tools:layout="@layout/fragment_home"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productsFragment"
+            app:launchSingleTop="true"
+            app:destination="@id/productsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="com.madeveloper.kayilarcarpet.fragments.ListProductFragment"
+        tools:layout="@layout/fragment_list_product"
+        android:label="List Product" >
+        <action
+            android:id="@+id/action_productsFragment_to_descriptionProductFragment"
+            app:destination="@id/descriptionProductFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/descriptionProductFragment"
+        android:name="com.madeveloper.kayilarcarpet.fragments.DescriptionProductFragment"
+        tools:layout="@layout/fragment_description_product"
+        android:label="Description Product" />
+
+
+
+
+
+</navigation>

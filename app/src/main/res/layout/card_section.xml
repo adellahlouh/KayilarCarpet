@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
->
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
@@ -14,58 +13,52 @@
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-
-        <ImageView
-            android:id="@+id/section_img"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/kitchen"
-            android:scaleType="fitXY"
-            android:tint="#95070707"
-            tools:ignore="ContentDescription" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/section_img"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/kitchen"
+                android:tint="#95070707"
+                tools:ignore="ContentDescription" />
 
 
-        <TextView
-            android:id="@+id/section_title_tx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Kitchen Carpet"
-            android:textColor="#FFFFFF"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="23sp"
-            android:textStyle="bold"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="32dp"
-            />
+            <TextView
+                android:id="@+id/section_title_tx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Kitchen Carpet" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/section_shop_bt"
-            style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="150dp"
-            android:layout_height="40dp"
-            app:icon="@drawable/ic_cart"
-            app:backgroundTint="@color/colorAccent"
-            android:layout_centerVertical="true"
-            android:layout_alignParentEnd="true"
-            android:text="@string/shop"
-            android:textAllCaps="false"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
-
-
-            />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/section_shop_bt"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="128dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/shop"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorAccent"
+                app:icon="@drawable/ic_cart"
 
 
+                />
 
 
-
-
-    </RelativeLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

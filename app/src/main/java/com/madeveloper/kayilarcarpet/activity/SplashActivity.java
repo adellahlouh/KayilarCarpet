@@ -4,14 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.WindowManager;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.model.User;
@@ -23,7 +20,6 @@ import java.util.Objects;
 public class SplashActivity extends AppCompatActivity {
 
     FirebaseAuth splashAuth;
-    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +50,7 @@ public class SplashActivity extends AppCompatActivity {
                 User user = documentSnapshot.toObject(User.class);
                 Util.saveUser(this, user);
 
-                startActivity(new Intent(SplashActivity.this, HomeActivity.class));
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
 
             });
 
