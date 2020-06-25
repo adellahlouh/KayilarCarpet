@@ -2,7 +2,6 @@ package com.madeveloper.kayilarcarpet.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,20 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.madeveloper.kayilarcarpet.R;
-import com.madeveloper.kayilarcarpet.activity.ProductActivity;
-import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.model.Section;
-import com.madeveloper.kayilarcarpet.utils.Constant;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHolder> {
 
-    Context context ;
-    List<Section> sectionList ;
+    Context context;
+    List<Section> sectionList;
+    private OnItemClick onItemClick;
 
     public SectionAdapter(Context context) {
         this.context = context;
@@ -36,8 +31,12 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
         sectionList = new ArrayList<>();
     }
 
-   public void setSectionList(List<Section> sectionList){
-        this.sectionList = sectionList ;
+    public void setOnItemClick(OnItemClick onItemClick) {
+        this.onItemClick = onItemClick;
+    }
+
+    public void setSectionList(List<Section> sectionList) {
+        this.sectionList = sectionList;
         notifyDataSetChanged();
     }
 
@@ -58,7 +57,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
         holder.titleTx.setText(section.getNameEn());
 
         holder.shopBt.setOnClickListener(view -> {
-            context.startActivity(new Intent(context, ProductActivity.class));
+            if (onItemClick != null) onItemClick.onClick(position, section);
         });
 
     }
@@ -70,9 +69,9 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
 
     static class ViewHolder extends RecyclerView.ViewHolder {
 
-        MaterialButton shopBt ;
-        TextView titleTx ;
-        ImageView sectionImg ;
+        MaterialButton shopBt;
+        TextView titleTx;
+        ImageView sectionImg;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,4 +82,10 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
 
         }
     }
+
+
+    public interface OnItemClick {
+        void onClick(int pos, Section section);
+    }
+
 }

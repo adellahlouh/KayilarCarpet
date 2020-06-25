@@ -24,23 +24,37 @@
 
             <ImageView
                 android:id="@+id/product_img"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="164dp"
                 android:layout_centerHorizontal="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/bedroom"
                 android:tint="#8D212112"
                 tools:ignore="ContentDescription" />
 
+
             <TextView
-                android:id="@+id/description_tx"
+                android:id="@+id/title_tx"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/product_img"
                 android:ellipsize="end"
                 android:maxLines="3"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:padding="8dp"
-                android:text="I am going to try and get a few things to do in the next couple of days and I will be able to address the client's objectives and the others will be able to address the client's objectives and the" />
+                tools:text="Title here " />
+
+
+            <TextView
+                android:id="@+id/description_tx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_tx"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:padding="8dp"
+                tools:text="I am going to try and get a few things to do in the next couple of days and I will be able to address the client's objectives and the others will be able to address the client's objectives and the" />
 
             <CheckBox
                 android:id="@+id/favorite_ch"
@@ -59,9 +73,9 @@
                 android:layout_marginStart="2dp"
                 android:layout_toEndOf="@id/price_tx"
                 android:fontFamily="@font/poppins_medium"
-                android:text="JD 200.00"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="13sp" />
+                tools:text="JD 200.00"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/price_tx"
@@ -69,51 +83,24 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/description_tx"
                 android:layout_marginStart="4dp"
-
-
                 android:fontFamily="@font/poppins_medium"
-                android:text="JD 100.00"
+                tools:text="JD 100.00"
                 android:textColor="#212121"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/offer_tx"
+                android:id="@+id/offerPercent_tx"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/price_tx"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentStart="true"
                 android:layout_marginEnd="8dp"
                 android:background="@color/colorPrimaryDark"
                 android:fontFamily="@font/poppins_medium"
-                android:text=" OFF 20% "
+                tools:text=" OFF 20% "
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="16sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#000000"
-                android:fontFamily="@font/poppins_medium"
-                android:text=" Code: APPSP15 "
-                android:textColor="#FFFFFF"
-                android:textSize="16sp" />
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.Icon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/offer_tx"
-                android:text="Add to Bag"
-                android:fontFamily="@font/poppins_medium"
-                app:icon="@drawable/ic_cart"
-                android:insetBottom="0dp"
-                app:cornerRadius="0dp"
-               />
-
-
-
 
 
         </RelativeLayout>

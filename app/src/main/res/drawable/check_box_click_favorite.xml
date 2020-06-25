@@ -4,6 +4,7 @@
         android:drawable="@drawable/ic_favorite_not_fill"
         android:state_checked="false"
         />
+
     <item
         android:drawable="@drawable/ic_favorite_fill"
         android:state_checked="true"

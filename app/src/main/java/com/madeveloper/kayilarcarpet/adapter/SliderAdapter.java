@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.model.Slider;
 import com.madeveloper.kayilarcarpet.utils.Constant;
+import com.madeveloper.kayilarcarpet.utils.Util;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
@@ -47,7 +48,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
         Slider slider = sliderList.get(position);
 
-        holder.txSliderDes.setText(slider.getTitleEn());
+        holder.txSliderDes.setText(Util.isEnglishDevice()? slider.getTitleEn(): slider.getTitleAr());
         Glide.with(context).load(slider.getImageUrl()).into(holder.imgSlider);
     }
 

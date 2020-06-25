@@ -5,25 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="300dp">
 
+
+    <ProgressBar
+        android:id="@+id/progress_circular"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
     <ImageView
         android:id="@+id/imgSlider"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
         android:tint="#74070707"
-        android:src="@drawable/background"
         tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/txSliderDes"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:maxLines="2"
+        android:background="@drawable/black_gradient"
+        android:ellipsize="end"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:fontFamily="@font/poppins_medium"
         android:text="@string/add_your_phone_number"
-        android:textSize="22sp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
+        android:textSize="16sp"
+        android:padding="8dp"
         android:textColor="#FFFFFF"
         android:layout_alignParentBottom="true"/>
 

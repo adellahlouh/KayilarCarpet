@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import android.view.WindowManager;
 import android.widget.ViewFlipper;
 
 import com.chaos.view.PinView;
@@ -17,7 +17,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,11 +24,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.madeveloper.kayilarcarpet.R;
-import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Constant;
 import com.madeveloper.kayilarcarpet.utils.Util;
 
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -55,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
@@ -79,9 +77,16 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btPrevious).setOnClickListener(v -> viewFlipperLogin.showPrevious());
 
         btLogin.setOnClickListener(v -> {
-            if (!Objects.requireNonNull(etPhoneLogin.getText()).toString().isEmpty()
-                    && etPhoneLogin.getText().toString().length() == 9) {
-                numberPhone = "+" + codePickerLogin.getFullNumber() + Objects.requireNonNull(etPhoneLogin.getText()).toString();
+
+            String phone = etPhoneLogin.getText().toString();
+
+            if (!phone.isEmpty() && ( phone.length() == 9 || phone.length() == 10 )) {
+
+                if(phone.startsWith("0"))
+                    phone = phone.substring(1);
+
+
+                numberPhone = "+" + codePickerLogin.getFullNumber() + phone;
                 etPhoneLogin.setError(null);
                 checkUser();
 
@@ -141,10 +146,8 @@ public class LoginActivity extends AppCompatActivity {
     private void checkUser() {
 
         progressHUD.show();
-        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        if (firebaseUser == null)
-            return;
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference loginTrackerDoc = db.collection(Constant.TRACKER_USERS_LOGIN).document(numberPhone);
@@ -170,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
         loginAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 pinView.setLineColor(Color.GREEN);
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 finish();
                 progressHUD.dismiss();
             } else {
