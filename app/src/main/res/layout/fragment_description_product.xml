@@ -145,7 +145,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 tools:text="16 JD"
                 tools:visibility="visible" />
 
-            <View
+            <Space
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />

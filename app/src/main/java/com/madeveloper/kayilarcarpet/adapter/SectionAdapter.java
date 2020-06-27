@@ -54,6 +54,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
         Section section = sectionList.get(position);
 
         Glide.with(context).load(section.getImageUrl()).into(holder.sectionImg);
+
         holder.titleTx.setText(section.getNameEn());
 
         holder.shopBt.setOnClickListener(view -> {
@@ -87,5 +88,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
     public interface OnItemClick {
         void onClick(int pos, Section section);
     }
+
+
 
 }

@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.madeveloper.kayilarcarpet.R;
+import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Constant;
 import com.madeveloper.kayilarcarpet.utils.Util;
 
@@ -123,6 +124,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 signInWithPhoneAuthCredential(phoneAuthCredential);
+                progressHUD.dismiss();
+
             }
 
             @Override
@@ -147,7 +150,6 @@ public class LoginActivity extends AppCompatActivity {
 
         progressHUD.show();
 
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference loginTrackerDoc = db.collection(Constant.TRACKER_USERS_LOGIN).document(numberPhone);
@@ -159,6 +161,10 @@ public class LoginActivity extends AppCompatActivity {
                         TimeUnit.SECONDS,   // Unit of timeout
                         LoginActivity.this, // Activity (for callback binding)
                         mCallbacks);
+
+                User user = new User();
+                user.setUid(loginAuth.getUid());
+
             } else {
                 snackbar = Snackbar.make(parentLayout, getString(R.string.this_number_is_not_sign_up_before_please_sign_up_first), Snackbar.LENGTH_LONG);
                 snackbar.show();

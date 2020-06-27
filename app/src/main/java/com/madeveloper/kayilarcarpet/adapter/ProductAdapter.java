@@ -2,33 +2,21 @@ package com.madeveloper.kayilarcarpet.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.DataSource;
-import com.bumptech.glide.load.engine.GlideException;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.model.Product;
-import com.madeveloper.kayilarcarpet.model.Section;
-import com.madeveloper.kayilarcarpet.utils.Constant;
 import com.madeveloper.kayilarcarpet.utils.ProductUtil;
 import com.madeveloper.kayilarcarpet.utils.Util;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,7 +34,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         productList = new ArrayList<>();
 
-        isEnglish = Util.isEnglishDevice();
+            isEnglish = Util.isEnglishDevice();
 
         favIdProduct = ProductUtil.getFavIDsList(context);
     }
@@ -56,7 +44,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         this.productList = productList;
         notifyDataSetChanged();
     }
-
 
     @NonNull
     @Override
@@ -99,7 +86,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             holder.offerPercent_tv.setVisibility(View.GONE);
         }
 
-        holder.itemView.setOnClickListener(view -> onItemClick.onClick(position, product));
+        holder.itemView.setOnClickListener(view -> {
+            assert onItemClick!=null;
+            onItemClick.onClick(position, product);
+        });
 
 
     }
@@ -133,7 +123,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             productCard = itemView.findViewById(R.id.product_card);
         }
     }
-
 
     public interface OnItemClick {
         void onClick(int pos, Product product);

@@ -33,7 +33,6 @@ public class SplashActivity extends AppCompatActivity {
         splashAuth = FirebaseAuth.getInstance();
 
 
-
     }
 
     private void getUserData() {
@@ -51,7 +50,7 @@ public class SplashActivity extends AppCompatActivity {
                 Util.saveUser(this, user);
 
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));
-
+                finish();
             });
 
         } else {

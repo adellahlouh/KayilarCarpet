@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.madeveloper.kayilarcarpet.R;
+import com.madeveloper.kayilarcarpet.databinding.FragmentFavoriteBinding;
 import com.madeveloper.kayilarcarpet.fragments.BaseFragment;
+import com.madeveloper.kayilarcarpet.fragments.CartFragment;
 import com.madeveloper.kayilarcarpet.fragments.DescriptionProductFragment;
+import com.madeveloper.kayilarcarpet.fragments.FavoriteFragment;
 import com.madeveloper.kayilarcarpet.fragments.HomeFragment;
 import com.madeveloper.kayilarcarpet.fragments.ListProductFragment;
 import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
+import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Util;
 
 import androidx.annotation.NonNull;
@@ -42,6 +47,29 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
 
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                if (tab.getPosition() == 0){
+                    navController.navigate(R.id.homeFragment);
+                }else if (tab.getPosition() == 1){
+                    navController.navigate(R.id.cartFragment);
+                }else if (tab.getPosition() == 2){
+                    navController.navigate(R.id.favoriteFragment);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
     }
 
@@ -67,6 +95,14 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
             Util.showBarFromActivity(this,false);
             setTitle(currentFragment.getTitle());
             tabLayout.setVisibility(View.GONE);
+        }
+        else if (currentFragment instanceof FavoriteFragment){
+            Util.showBarFromActivity(this,false);
+            setTitle(currentFragment.getTitle());
+            tabLayout.setVisibility(View.VISIBLE);
+        }else if (currentFragment instanceof CartFragment){
+            Util.showBarFromActivity(this,false);
+            tabLayout.setVisibility(View.VISIBLE);
         }
 
     }

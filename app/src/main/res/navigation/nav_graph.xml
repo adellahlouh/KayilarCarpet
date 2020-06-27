@@ -32,6 +32,24 @@
         tools:layout="@layout/fragment_description_product"
         android:label="Description Product" />
 
+    <fragment android:id="@+id/favoriteFragment"
+        android:name="com.madeveloper.kayilarcarpet.fragments.FavoriteFragment"
+        tools:layout="@layout/fragment_favorite"
+        android:label="Favorite Product"
+        >
+        <action
+            android:id="@+id/action_favoriteFragment_to_descriptionProductFragment"
+            app:destination="@id/descriptionProductFragment" />
+    </fragment>
+
+    <fragment android:id="@+id/cartFragment"
+        android:name="com.madeveloper.kayilarcarpet.fragments.CartFragment"
+        tools:layout="@layout/fragment_cart"
+        android:label="Cart"/>
+
+
+
+
 
 
 

@@ -6,17 +6,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.fragment.NavHostFragment;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,7 +23,7 @@ import com.madeveloper.kayilarcarpet.adapter.SliderAdapter;
 import com.madeveloper.kayilarcarpet.databinding.FragmentHomeBinding;
 import com.madeveloper.kayilarcarpet.fragments.view_model.HomeViewModel;
 import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
-import com.madeveloper.kayilarcarpet.model.Product;
+
 import com.madeveloper.kayilarcarpet.model.Section;
 import com.madeveloper.kayilarcarpet.model.Slider;
 import com.madeveloper.kayilarcarpet.utils.Constant;
@@ -102,7 +98,6 @@ public class HomeFragment extends BaseFragment {
 
             onNavigateFragment.onNavigate(R.id.productsFragment, bundle);
         });
-
 
         createSliderDetails();
         createSectionDetails();

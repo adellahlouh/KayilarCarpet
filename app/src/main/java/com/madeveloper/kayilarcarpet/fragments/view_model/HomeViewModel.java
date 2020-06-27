@@ -11,6 +11,7 @@ import java.util.List;
 public class HomeViewModel extends ViewModel {
 
     private MutableLiveData<List<Slider>> sliderData = new MutableLiveData<>();
+
     private MutableLiveData<List<Section>> sectionsData = new MutableLiveData<>();
 
     public List<Slider> getSliderData() {

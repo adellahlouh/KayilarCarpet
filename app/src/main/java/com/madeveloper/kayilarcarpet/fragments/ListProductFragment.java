@@ -89,7 +89,7 @@ public class ListProductFragment extends BaseFragment {
         binding.productRv.setAdapter(productAdapter);
 
 
-        productAdapter.setOnItemClick((pos, product) -> {
+        productAdapter.setOnItemClick((int pos, Product product) -> {
             Bundle bundle = new Bundle();
 
             bundle.putString(DescriptionProductFragment.ARG_PRODUCT,new Gson().toJson(product));
@@ -105,7 +105,6 @@ public class ListProductFragment extends BaseFragment {
 
         productsRef.whereEqualTo("sectionId", section.getId()).get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
-
 
                     List<Product> productList = Util.getListFromCollection(queryDocumentSnapshots, Product.class);
 

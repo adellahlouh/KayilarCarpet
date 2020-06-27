@@ -2,11 +2,11 @@ package com.madeveloper.kayilarcarpet.model;
 
 public class User {
 
-    private String name ;
-    private String date ;
-    private String phone ;
-    private String gender ;
-    private String uid ;
+    public String name ;
+    public String date ;
+    public String phone ;
+    public String gender ;
+    public String uid ;
 
     public User() {
     }

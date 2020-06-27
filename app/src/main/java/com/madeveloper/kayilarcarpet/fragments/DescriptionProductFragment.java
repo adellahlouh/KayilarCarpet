@@ -123,6 +123,12 @@ public class DescriptionProductFragment extends BaseFragment {
         });
 
 
+
+        binding.addToCartBtn.setOnClickListener(v->{
+            ProductUtil.updateProductListCart(getContext(),product,true);
+        });
+
+
     }
 
     private void loadSlider() {
