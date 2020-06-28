@@ -76,7 +76,7 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         onNavigateFragment.onFragmentShow(this);
-        homeViewModel =new  ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel =new ViewModelProvider(this).get(HomeViewModel.class);
 
 
         refSlider = FirebaseFirestore.getInstance().collection(Constant.SLIDER_IMAGE_COL);

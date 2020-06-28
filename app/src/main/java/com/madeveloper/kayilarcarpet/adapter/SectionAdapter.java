@@ -57,7 +57,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
 
         holder.titleTx.setText(section.getNameEn());
 
-        holder.shopBt.setOnClickListener(view -> {
+        holder.itemView.setOnClickListener(view -> {
             if (onItemClick != null) onItemClick.onClick(position, section);
         });
 

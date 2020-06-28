@@ -163,7 +163,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 fancy:fb_iconPosition="left"
                 fancy:fb_iconResource="@drawable/ic_add_shopping_cart"
                 fancy:fb_radius="4dp"
-                fancy:fb_text="Add To Cart"
+                fancy:fb_text="@string/add_to_cart"
                 fancy:fb_textSize="16sp"
                 fancy:fb_useSystemFont="true" />
 

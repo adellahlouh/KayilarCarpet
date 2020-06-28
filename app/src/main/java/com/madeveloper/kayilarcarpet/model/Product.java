@@ -7,7 +7,7 @@ public class Product {
 
     private String id;
 
-    private String nameAr,nameEn;
+    private String nameAr,nameEn,size;
     private String desAr,desEn;
 
     private String sectionId;
@@ -130,5 +130,13 @@ public class Product {
 
     public void setImageUrls(List<String> imageUrls) {
         this.imageUrls = imageUrls;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }

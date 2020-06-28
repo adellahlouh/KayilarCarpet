@@ -103,12 +103,18 @@ public class DescriptionProductFragment extends BaseFragment {
 
         binding.backBtn.setOnClickListener(view1 -> getActivity().onBackPressed());
 
-
+        //***detect if product in fav list
         List<String> favIdProduct = ProductUtil.getFavIDsList(getContext());
         if(favIdProduct.contains(product.getId()))
             binding.favBtn.setLiked(true);
         else
             binding.favBtn.setLiked(false);
+
+        //***detect if product inside cart
+        List<String> cartIdsProduct = ProductUtil.getCartIDsList(getContext());
+        boolean isInCart = cartIdsProduct.contains(product.getId());
+        setupCartBtn(isInCart);
+
 
         binding.favBtn.setOnLikeListener(new OnLikeListener() {
             @Override
@@ -123,11 +129,33 @@ public class DescriptionProductFragment extends BaseFragment {
         });
 
 
+    }
 
-        binding.addToCartBtn.setOnClickListener(v->{
-            ProductUtil.updateProductListCart(getContext(),product,true);
+    private void setupCartBtn(boolean isInCart) {
+
+
+        if(isInCart){
+
+            binding.addToCartBtn.setBackgroundColor(getResources().getColor(R.color.white));
+            binding.addToCartBtn.setTextColor(getResources().getColor(R.color.red));
+            binding.addToCartBtn.setBorderColor(getResources().getColor(R.color.colorPrimaryDark));
+            binding.addToCartBtn.setIconResource(R.drawable.ic_remove_cart);
+            binding.addToCartBtn.setText(getString(R.string.remove_from_cart));
+
+
+        }else {
+
+            binding.addToCartBtn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+            binding.addToCartBtn.setTextColor(getResources().getColor(R.color.white));
+            binding.addToCartBtn.setIconResource(R.drawable.ic_add_shopping_cart);
+            binding.addToCartBtn.setText(getString(R.string.add_to_cart));
+
+        }
+
+        binding.addToCartBtn.setOnClickListener(view -> {
+            ProductUtil.updateProductListCart(getContext(),product,!isInCart);
+            setupCartBtn(!isInCart);
         });
-
 
     }
 

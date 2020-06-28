@@ -24,6 +24,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
+import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
 
 public class MainActivity extends AppCompatActivity implements OnNavigateFragment {
@@ -43,20 +44,31 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
         setSupportActionBar(toolbar);
 
         Util.setCloseIconAsBack(this);
-        Util.showBarFromActivity(this,false);
+        Util.showBarFromActivity(this, false);
 
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
-                if (tab.getPosition() == 0){
-                    navController.navigate(R.id.homeFragment);
-                }else if (tab.getPosition() == 1){
-                    navController.navigate(R.id.cartFragment);
-                }else if (tab.getPosition() == 2){
-                    navController.navigate(R.id.favoriteFragment);
+                NavOptions navOptions = new NavOptions.Builder()
+                        .setEnterAnim(android.R.anim.fade_in)
+                        .setExitAnim(android.R.anim.fade_out)
+                        .build();
+
+                if (tab.getPosition() == 0) {
+                    navController.popBackStack(R.id.homeFragment, false);
+
+                } else if (tab.getPosition() == 1) {
+                    navController.navigate(R.id.cartFragment,null,navOptions);
+
+                } else if (tab.getPosition() == 2) {
+
+                    navController.navigate(R.id.favoriteFragment,null,navOptions);
                 }
             }
 
@@ -82,27 +94,32 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
     public void onFragmentShow(BaseFragment currentFragment) {
 
         if (currentFragment instanceof HomeFragment) {
-            Util.showBarFromActivity(this,false);
+            Util.showBarFromActivity(this, false);
             setTitle("");
             tabLayout.setVisibility(View.VISIBLE);
-        }
-        else if (currentFragment instanceof ListProductFragment) {
-            Util.showBarFromActivity(this,true);
+        } else if (currentFragment instanceof ListProductFragment) {
+            Util.showBarFromActivity(this, true);
             setTitle(currentFragment.getTitle());
             tabLayout.setVisibility(View.GONE);
-        }
-        else if (currentFragment instanceof DescriptionProductFragment) {
-            Util.showBarFromActivity(this,false);
+        } else if (currentFragment instanceof DescriptionProductFragment) {
+            Util.showBarFromActivity(this, false);
             setTitle(currentFragment.getTitle());
             tabLayout.setVisibility(View.GONE);
-        }
-        else if (currentFragment instanceof FavoriteFragment){
-            Util.showBarFromActivity(this,false);
+        } else if (currentFragment instanceof FavoriteFragment) {
+            Util.showBarFromActivity(this, false);
             setTitle(currentFragment.getTitle());
+
+            TabLayout.Tab tab = tabLayout.getTabAt(2);
+            tab.select();
+
             tabLayout.setVisibility(View.VISIBLE);
-        }else if (currentFragment instanceof CartFragment){
-            Util.showBarFromActivity(this,false);
+        } else if (currentFragment instanceof CartFragment) {
+
+            Util.showBarFromActivity(this, false);
             tabLayout.setVisibility(View.VISIBLE);
+
+            TabLayout.Tab tab = tabLayout.getTabAt(1);
+            tab.select();
         }
 
     }
@@ -117,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }

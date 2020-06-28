@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -21,6 +22,8 @@ import com.google.gson.Gson;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.adapter.ProductAdapter;
 import com.madeveloper.kayilarcarpet.databinding.FragmentListProductBinding;
+import com.madeveloper.kayilarcarpet.fragments.view_model.HomeViewModel;
+import com.madeveloper.kayilarcarpet.fragments.view_model.ListProductViewModel;
 import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.model.Section;
@@ -38,6 +41,7 @@ public class ListProductFragment extends BaseFragment {
     private FragmentListProductBinding binding;
     private CollectionReference productsRef;
     private ProductAdapter productAdapter;
+    private ListProductViewModel listProductViewModel;
 
     public ListProductFragment() {
         // Required empty public constructor
@@ -80,6 +84,9 @@ public class ListProductFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+       listProductViewModel  =new ViewModelProvider(this).get(ListProductViewModel.class);
+
+
         onNavigateFragment.onFragmentShow(this);
         productsRef = FirebaseFirestore.getInstance().collection(Constant.PRODUCTS_COL);
 
@@ -103,13 +110,21 @@ public class ListProductFragment extends BaseFragment {
 
     private void loadProduct() {
 
+        if(listProductViewModel.getProductList() !=null){
+            binding.progressCircular.setVisibility(View.GONE);
+            productAdapter.setProductList(listProductViewModel.getProductList());
+            return;
+        }
+
         productsRef.whereEqualTo("sectionId", section.getId()).get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
 
                     List<Product> productList = Util.getListFromCollection(queryDocumentSnapshots, Product.class);
 
                     binding.progressCircular.setVisibility(View.GONE);
+
                     productAdapter.setProductList(productList);
+                    listProductViewModel.setProductList(productList);
 
                 });
 
