@@ -61,6 +61,10 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
             if (onItemClick != null) onItemClick.onClick(position, section);
         });
 
+        holder.shopBt.setOnClickListener(view -> {
+            if (onItemClick != null) onItemClick.onClick(position, section);
+        });
+
     }
 
     @Override

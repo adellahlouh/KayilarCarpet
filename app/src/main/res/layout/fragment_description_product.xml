@@ -127,7 +127,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:textColor="@color/black"
-                android:textSize="24sp"
+                android:textSize="18sp"
                 tools:ignore="RtlSymmetry"
                 tools:text="35 JD" />
 
@@ -138,7 +138,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 android:layout_gravity="top"
                 android:padding="4dp"
                 android:textColor="@color/red"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 android:visibility="gone"
                 tools:ignore="SmallSp"
@@ -164,7 +164,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 fancy:fb_iconResource="@drawable/ic_add_shopping_cart"
                 fancy:fb_radius="4dp"
                 fancy:fb_text="@string/add_to_cart"
-                fancy:fb_textSize="16sp"
+                fancy:fb_textSize="14sp"
                 fancy:fb_useSystemFont="true" />
 
         </LinearLayout>
