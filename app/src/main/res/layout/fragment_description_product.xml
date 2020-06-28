@@ -128,6 +128,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 android:paddingStart="8dp"
                 android:textColor="@color/black"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 tools:ignore="RtlSymmetry"
                 tools:text="35 JD" />
 
