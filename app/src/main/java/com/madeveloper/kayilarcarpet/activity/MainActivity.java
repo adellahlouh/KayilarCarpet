@@ -9,6 +9,7 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.databinding.FragmentFavoriteBinding;
+import com.madeveloper.kayilarcarpet.fragments.AccountFragment;
 import com.madeveloper.kayilarcarpet.fragments.BaseFragment;
 import com.madeveloper.kayilarcarpet.fragments.CartFragment;
 import com.madeveloper.kayilarcarpet.fragments.DescriptionProductFragment;
@@ -69,6 +70,9 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
                 } else if (tab.getPosition() == 2) {
 
                     navController.navigate(R.id.favoriteFragment,null,navOptions);
+                }else if (tab.getPosition() == 3){
+                    navController.navigate(R.id.accountFragment,null,navOptions);
+
                 }
             }
 
@@ -108,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
         } else if (currentFragment instanceof FavoriteFragment) {
             Util.showBarFromActivity(this, false);
             setTitle(currentFragment.getTitle());
-
             TabLayout.Tab tab = tabLayout.getTabAt(2);
             tab.select();
 
@@ -120,6 +123,12 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
 
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
+        }else if (currentFragment instanceof AccountFragment){
+            Util.showBarFromActivity(this, false);
+            tabLayout.setVisibility(View.VISIBLE);
+            TabLayout.Tab tab = tabLayout.getTabAt(3);
+            tab.select();
+
         }
 
     }

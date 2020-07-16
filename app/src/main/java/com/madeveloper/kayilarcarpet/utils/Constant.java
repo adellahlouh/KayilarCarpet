@@ -16,6 +16,7 @@ public class Constant {
     public static final String FAV_ID_PREF = "FAV_IDS";
     public static final String FAV_PRODUCT_PREF = "FAV_GSON_PRODUCT";
 
+    public static final String USER_PREF = "User";
     public static final String CART_ID_PREF = "CART_IDS";
     public static final String CART_PRODUCT_PREF = "CART_GSON_PRODUCT";
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,11 +43,14 @@ public class SplashActivity extends AppCompatActivity {
         if (firebaseUser != null) {
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference userDoc = db.collection(Constant.USERS_COLLECTION).document(Objects.requireNonNull(splashAuth.getUid()));
+            DocumentReference userDoc = db.collection(Constant.USERS_COLLECTION).document(splashAuth.getCurrentUser().getUid());
 
             userDoc.get().addOnSuccessListener(documentSnapshot -> {
 
                 User user = documentSnapshot.toObject(User.class);
+
+
+
                 Util.saveUser(this, user);
 
                 startActivity(new Intent(SplashActivity.this, MainActivity.class));

@@ -1,107 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardElevation="8dp"
+    app:cardUseCompatPadding="true">
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardElevation="8dp">
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/offerPercent_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="8dp"
+            android:background="@color/red"
+            android:fontFamily="@font/poppins_medium"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:ignore="RelativeOverlap"
+            tools:text=" OFF 20% " />
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/kayilar_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_below="@id/offerPercent_tx"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:textColor="#000"
+            android:text="Kayilar Carpet"
+            tools:ignore="HardcodedText" />
+
+
+        <TextView
+            android:id="@+id/nameProduct_tx"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_below="@id/kayilar_tx"
+            android:layout_toStartOf="@id/product_img"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            tools:text="Dvergfaks Area Rug 30 x 150 centimeter" />
 
-            <TextView
-                android:id="@+id/nameProduct_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_toStartOf="@id/product_img"
-                android:fontFamily="@font/poppins_medium"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="14sp"
-                tools:text="Dvergfaks Area Rug 30 x 150 centimeter" />
+        <ImageView
+            android:id="@+id/product_img"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:elevation="32dp"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bedroom"
+            tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:id="@+id/product_img"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="8dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/bedroom" />
+        <TextView
+            android:id="@+id/description_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/nameProduct_tx"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toStartOf="@id/product_img"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_medium"
+            android:maxLines="2"
+            tools:text="Dvergfaks Area Rug 30 x 150 centimeter Dvergfaks Area Rug 30 x 150 centimeter"
 
-            <TextView
-                android:id="@+id/description_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/nameProduct_tx"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_toStartOf="@id/product_img"
-                android:ellipsize="end"
-                android:fontFamily="@font/poppins_medium"
-                android:maxLines="2"
-                android:text="Dvergfaks Area Rug 30 x 150 centimeter Dvergfaks Area Rug 30 x 150 centimeter"
-
-                android:textSize="12sp" />
+            android:textSize="12sp" />
 
 
-            <TextView
-                android:id="@+id/oldPrice_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description_tx"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="@font/poppins_medium"
-                android:text="JD 20.00"
-                android:textColor="@color/red"
-                android:textSize="15sp" />
+        <TextView
+            android:id="@+id/oldPrice_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_tx"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins_medium"
+            tools:text="JD 20.00"
+            android:layout_toEndOf="@id/price_tx"
 
-            <TextView
-                android:id="@+id/price_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description_tx"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_toEndOf="@id/oldPrice_tx"
-                android:fontFamily="@font/poppins_medium"
-                android:text="JD 10.00"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            android:textColor="@color/red"
+            android:textSize="12sp" />
 
-            <ImageButton
-                android:id="@+id/delete_img"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:layout_margin="8dp"
-                android:padding="8dp"
-                android:background="@android:color/transparent"
-                android:layout_below="@id/product_img"
-                android:layout_alignParentEnd="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_delete"
-                tools:ignore="ContentDescription" />
+        <TextView
+            android:id="@+id/price_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_tx"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/poppins_medium"
+            tools:text="JD 10.00"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-
-        </RelativeLayout>
+        <ImageButton
+            android:id="@+id/delete_img"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_below="@id/product_img"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:background="@android:color/transparent"
+            android:padding="8dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_delete"
+            tools:ignore="ContentDescription" />
 
 
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
 
 
-</RelativeLayout>

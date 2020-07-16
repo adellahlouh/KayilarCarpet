@@ -27,7 +27,6 @@
     <string name="upload_data">Upload Data ...</string>
     <string name="this_user_already_exists">This user already exists</string>
     <string name="this_number_is_not_sign_up_before_please_sign_up_first">This number is not Sign Up before, please Sign Up first.</string>
-    <string name="save_user">saveUser</string>
     <string name="home">Home</string>
     <string name="cart">Cart</string>
     <string name="favorite">Favorite</string>
@@ -57,4 +56,6 @@
     <string name="checkout">Checkout</string>
     <string name="remove_from_cart">Remove From Cart</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="item">Item : </string>
+    <string name="show_order_history">Show Order History</string>
 </resources>

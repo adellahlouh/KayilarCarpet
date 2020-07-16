@@ -3,7 +3,6 @@ package com.madeveloper.kayilarcarpet.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Paint;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +56,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         return new CartAdapter.ViewHolder(inflate);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
         Product product = productList.get(position);
@@ -65,12 +65,20 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         holder.nameProductTx.setText(isEnglish ?product.getNameEn() :product.getNameAr());
 
+        holder.priceTx.setText(product.getPrice()+ " JD");
 
-        holder.priceTx.setText(String.valueOf(product.getPrice()));
+        if (product.isOffer()) {
+            holder.oldPrice.setVisibility(View.VISIBLE);
+            holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-        holder.oldPriceTx.setPaintFlags(holder.oldPriceTx.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
 
-        holder.oldPriceTx.setText(String.valueOf(product.getOldPrice()));
+            holder.oldPrice.setText(product.getOldPrice() + " JD");
+            holder.offerPercent_tv.setText("OFF " + percent + "%");
+        } else {
+            holder.oldPrice.setVisibility(View.GONE);
+            holder.offerPercent_tv.setVisibility(View.GONE);
+        }
 
         holder.descriptionTx.setText(isEnglish ? product.getDesEn() : product.getDesAr());
 
@@ -89,7 +97,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nameProductTx, oldPriceTx ,priceTx ,descriptionTx;
+        TextView nameProductTx, oldPrice,priceTx ,descriptionTx,offerPercent_tv;
         ImageView productImg ;
         ImageButton deleteImg ;
 
@@ -97,11 +105,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             super(itemView);
 
             nameProductTx = itemView.findViewById(R.id.nameProduct_tx);
-            oldPriceTx = itemView.findViewById(R.id.oldPrice_tx);
+            oldPrice = itemView.findViewById(R.id.oldPrice_tx);
             priceTx = itemView.findViewById(R.id.price_tx);
             descriptionTx = itemView.findViewById(R.id.description_tx);
             productImg = itemView.findViewById(R.id.product_img);
             deleteImg = itemView.findViewById(R.id.delete_img);
+            offerPercent_tv = itemView.findViewById(R.id.offerPercent_tx);
+
 
         }
     }

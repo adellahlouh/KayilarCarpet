@@ -74,23 +74,22 @@ public class Util {
 
 
     public static void saveUser(Context context, User user) {
-        SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.save_user), Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(Constant.USER_PREF, Context.MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
 
         String userGson = new Gson().toJson(user);
 
-        editor.putString("user", userGson);
+        editor.putString(Constant.USER_PREF, userGson);
         editor.apply();
 
     }
 
     public static User getUser(Context context) {
 
-        User user;
-        SharedPreferences preferences = context.getSharedPreferences(context.getString(R.string.save_user), Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(Constant.USER_PREF, Context.MODE_PRIVATE);
 
-        String userGson = preferences.getString("user", "");
+        String userGson = preferences.getString(Constant.USER_PREF, "");
 
         assert userGson != null;
         if (userGson.isEmpty())

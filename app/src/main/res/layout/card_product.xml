@@ -1,111 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:id="@+id/product_card"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_marginStart="4dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="4dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="8dp"
+    app:cardUseCompatPadding="true">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/product_card"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="2dp"
-        app:cardBackgroundColor="#FFFFFF"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/product_img"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:id="@+id/product_img"
-                android:layout_width="match_parent"
-                android:layout_height="164dp"
-                android:layout_centerHorizontal="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/bedroom"
-                android:tint="#8D212112"
-                tools:ignore="ContentDescription" />
+            android:layout_height="164dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/bedroom"
+            android:tint="#8D212112"
+            tools:ignore="ContentDescription" />
 
 
-            <TextView
-                android:id="@+id/title_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/product_img"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                android:padding="8dp"
-                tools:text="Title here " />
+        <TextView
+            android:id="@+id/title_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/product_img"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            tools:text="Title here " />
 
 
-            <TextView
-                android:id="@+id/description_tx"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/title_tx"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:padding="8dp"
-                tools:text="I am going to try and get a few things to do in the next couple of days and I will be able to address the client's objectives and the others will be able to address the client's objectives and the" />
+        <TextView
+            android:id="@+id/description_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_tx"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="I am going to try and get a few things to do in the next couple of days and I will be able to address the client's objectives and the others will be able to address the client's objectives and the" />
 
-            <CheckBox
-                android:id="@+id/favorite_ch"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_alignParentEnd="true"
-                android:layout_margin="16dp"
-                android:button="@drawable/check_box_click_favorite"
-                android:padding="2dp" />
+        <CheckBox
+            android:id="@+id/favorite_ch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/product_img"
+            android:layout_alignParentTop="true"
+            android:layout_margin="8dp"
+            android:button="@drawable/check_box_click_favorite"
+            />
 
-            <TextView
-                android:id="@+id/oldPrice_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description_tx"
-                android:layout_marginStart="2dp"
-                android:layout_toEndOf="@id/price_tx"
-                android:fontFamily="@font/poppins_medium"
-                tools:text="JD 200.00"
-                android:textColor="@android:color/holo_red_dark"
-                android:textSize="12sp" />
+        <TextView
+            android:id="@+id/oldPrice_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_tx"
+            android:layout_marginStart="2dp"
+            android:layout_toEndOf="@id/price_tx"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="12sp"
+            tools:text="JD 200.00" />
 
-            <TextView
-                android:id="@+id/price_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/description_tx"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/poppins_medium"
-                tools:text="JD 100.00"
-                android:textColor="#212121"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/price_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/description_tx"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="#212121"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="JD 100.00" />
 
-            <TextView
-                android:id="@+id/offerPercent_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_marginEnd="8dp"
-                android:background="@color/red"
-                android:fontFamily="@font/poppins_medium"
-                tools:text=" OFF 20% "
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/offerPercent_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginEnd="8dp"
+            android:background="@color/red"
+            android:fontFamily="@font/poppins_medium"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            tools:ignore="RelativeOverlap"
+            tools:text=" OFF 20% " />
+
+        <ImageView
+            android:id="@+id/addCart_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cart"
+            android:visibility="gone"
+            android:layout_alignEnd="@id/product_img"
+            android:layout_below="@id/description_tx"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"/>
 
 
-        </RelativeLayout>
 
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
 
 
-</RelativeLayout>

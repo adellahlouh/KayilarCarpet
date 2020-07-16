@@ -135,6 +135,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                progressHUD.dismiss();
+
                 viewFlipperLogin.showNext();
                 mVerificationId = s;
                 mResendToken = forceResendingToken;
@@ -154,6 +156,9 @@ public class LoginActivity extends AppCompatActivity {
 
         DocumentReference loginTrackerDoc = db.collection(Constant.TRACKER_USERS_LOGIN).document(numberPhone);
         loginTrackerDoc.get().addOnSuccessListener(documentSnapshot -> {
+
+
+
             if (documentSnapshot.exists()) {
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
                         numberPhone,        // Phone number to verify
@@ -162,8 +167,6 @@ public class LoginActivity extends AppCompatActivity {
                         LoginActivity.this, // Activity (for callback binding)
                         mCallbacks);
 
-                User user = new User();
-                user.setUid(loginAuth.getUid());
 
             } else {
                 snackbar = Snackbar.make(parentLayout, getString(R.string.this_number_is_not_sign_up_before_please_sign_up_first), Snackbar.LENGTH_LONG);
@@ -179,9 +182,11 @@ public class LoginActivity extends AppCompatActivity {
         loginAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
             if (task.isSuccessful()) {
                 pinView.setLineColor(Color.GREEN);
+
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
                 progressHUD.dismiss();
+
+                finish();
             } else {
                 pinView.setLineColor(Color.RED);
                 snackbar = Snackbar

@@ -9,14 +9,17 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.utils.ProductUtil;
 import com.madeveloper.kayilarcarpet.utils.Util;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,16 +30,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     private List<Product> productList;
     private OnItemClick onItemClick;
 
-    List<String> favIdProduct;
+    List<String> favIdProduct, cartIdProduct;
 
     public ProductAdapter(Context context) {
         this.context = context;
 
         productList = new ArrayList<>();
 
-            isEnglish = Util.isEnglishDevice();
+        isEnglish = Util.isEnglishDevice();
 
         favIdProduct = ProductUtil.getFavIDsList(context);
+        cartIdProduct = ProductUtil.getCartIDsList(context);
     }
 
     public void setProductList(List<Product> productList) {
@@ -71,7 +75,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
 
         holder.favoriteChk.setChecked(favIdProduct.contains(product.getId()));
-        holder.favoriteChk.setOnCheckedChangeListener((compoundButton, b) -> ProductUtil.updateProductListFav(context,product,b));
+
+        holder.addCartImg.setVisibility(cartIdProduct.contains(product.getId()) ? View.VISIBLE : View.GONE);
+
+        holder.favoriteChk.setOnCheckedChangeListener((compoundButton, b) -> ProductUtil.updateProductListFav(context, product, b));
 
         if (product.isOffer()) {
             holder.oldPrice.setVisibility(View.VISIBLE);
@@ -87,7 +94,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
 
         holder.itemView.setOnClickListener(view -> {
-            assert onItemClick!=null;
+            assert onItemClick != null;
             onItemClick.onClick(position, product);
         });
 
@@ -106,7 +113,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         CheckBox favoriteChk;
-        ImageView productImg;
+        ImageView productImg, addCartImg;
         TextView oldPrice, description_tv, title_tv, price_tv, offerPercent_tv;
         CardView productCard;
 
@@ -121,6 +128,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             productImg = itemView.findViewById(R.id.product_img);
             oldPrice = itemView.findViewById(R.id.oldPrice_tx);
             productCard = itemView.findViewById(R.id.product_card);
+            addCartImg = itemView.findViewById(R.id.addCart_img);
         }
     }
 

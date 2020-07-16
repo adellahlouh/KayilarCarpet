@@ -3,7 +3,7 @@ package com.madeveloper.kayilarcarpet.model;
 public class User {
 
     public String name ;
-    public String date ;
+    public String birthDate;
     public String phone ;
     public String gender ;
     public String uid ;
@@ -15,8 +15,8 @@ public class User {
         this.name = name;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
     }
 
     public void setPhone(String phone) {
@@ -35,8 +35,8 @@ public class User {
         return name;
     }
 
-    public String getDate() {
-        return date;
+    public String getBirthDate() {
+        return birthDate;
     }
 
     public String getPhone() {

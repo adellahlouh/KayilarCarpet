@@ -1,8 +1,13 @@
 package com.madeveloper.kayilarcarpet.fragments;
 
+import android.content.Intent;
+import android.graphics.Point;
 import android.os.Bundle;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.ferfalk.simplesearchview.utils.DimensUtils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,6 +48,7 @@ public class ListProductFragment extends BaseFragment {
     private CollectionReference productsRef;
     private ProductAdapter productAdapter;
     private ListProductViewModel listProductViewModel;
+
 
     public ListProductFragment() {
         // Required empty public constructor
@@ -84,7 +91,7 @@ public class ListProductFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-       listProductViewModel  =new ViewModelProvider(this).get(ListProductViewModel.class);
+        listProductViewModel = new ViewModelProvider(this).get(ListProductViewModel.class);
 
 
         onNavigateFragment.onFragmentShow(this);
@@ -99,9 +106,9 @@ public class ListProductFragment extends BaseFragment {
         productAdapter.setOnItemClick((int pos, Product product) -> {
             Bundle bundle = new Bundle();
 
-            bundle.putString(DescriptionProductFragment.ARG_PRODUCT,new Gson().toJson(product));
+            bundle.putString(DescriptionProductFragment.ARG_PRODUCT, new Gson().toJson(product));
 
-            onNavigateFragment.onNavigate(R.id.descriptionProductFragment,bundle);
+            onNavigateFragment.onNavigate(R.id.descriptionProductFragment, bundle);
         });
 
         loadProduct();
@@ -110,7 +117,7 @@ public class ListProductFragment extends BaseFragment {
 
     private void loadProduct() {
 
-        if(listProductViewModel.getProductList() !=null){
+        if (listProductViewModel.getProductList() != null) {
             binding.progressCircular.setVisibility(View.GONE);
             productAdapter.setProductList(listProductViewModel.getProductList());
             return;
@@ -129,6 +136,7 @@ public class ListProductFragment extends BaseFragment {
                 });
 
     }
+
 
 
 }

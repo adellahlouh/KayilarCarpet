@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
     User userModel;
 
 
-    TextInputEditText etName, etPhone, etDate;
+    TextInputEditText etName, etPhone, etBirthDate;
     MaterialButton btSignUp, btVerification;
     MaterialRadioButton rdMale, rdFemale;
     String numberPhone, mVerificationId;
@@ -84,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         etName = findViewById(R.id.etName);
         etPhone = findViewById(R.id.etPhone);
-        etDate = findViewById(R.id.etDate);
+        etBirthDate = findViewById(R.id.etDate);
         btSignUp = findViewById(R.id.btLogin);
         pinView = findViewById(R.id.pinView);
         btVerification = findViewById(R.id.btVerification);
@@ -98,7 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
         rdGroup = findViewById(R.id.rdGroup);
 
 
-        etDate.setInputType(InputType.TYPE_NULL);
+        etBirthDate.setInputType(InputType.TYPE_NULL);
         codePicker.setCountryForPhoneCode(+962);
 
         findViewById(R.id.layLogin).setOnClickListener(v -> startActivity(new Intent(SignUpActivity.this, LoginActivity.class)));
@@ -127,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
             updateCalender();
         };
 
-        etDate.setOnClickListener(view -> new DatePickerDialog(SignUpActivity.this, date, myCalendar
+        etBirthDate.setOnClickListener(view -> new DatePickerDialog(SignUpActivity.this, date, myCalendar
                 .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                 myCalendar.get(Calendar.DAY_OF_MONTH)).show());
 
@@ -181,7 +181,7 @@ public class SignUpActivity extends AppCompatActivity {
     void updateCalender() {
         String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-        etDate.setText(sdf.format(myCalendar.getTime()));
+        etBirthDate.setText(sdf.format(myCalendar.getTime()));
     }
 
     private boolean checkValidation() {
@@ -189,8 +189,8 @@ public class SignUpActivity extends AppCompatActivity {
         if (Objects.requireNonNull(etName.getText()).toString().isEmpty()) {
             etName.setError(getString(R.string.enter_your_full_name));
 
-        } else if (Objects.requireNonNull(etDate.getText()).toString().isEmpty()) {
-            etDate.setError(getString(R.string.enter_your_age));
+        } else if (Objects.requireNonNull(etBirthDate.getText()).toString().isEmpty()) {
+            etBirthDate.setError(getString(R.string.enter_your_age));
 
         } else if (Objects.requireNonNull(etPhone.getText()).toString().isEmpty()) {
             etPhone.setError(getString(R.string.enter_your_phone_number));
@@ -201,7 +201,7 @@ public class SignUpActivity extends AppCompatActivity {
         } else {
             etName.setError(null);
             etPhone.setError(null);
-            etDate.setError(null);
+            etBirthDate.setError(null);
             rdMale.setError(null);
             return true;
         }
@@ -215,6 +215,7 @@ public class SignUpActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 pinView.setLineColor(Color.GREEN);
                 createUser();
+                finish();
 
             } else {
                 pinView.setLineColor(Color.RED);
@@ -264,7 +265,7 @@ public class SignUpActivity extends AppCompatActivity {
                 user.setUid(firebaseUser.getUid());
                 user.setName(Objects.requireNonNull(etName.getText()).toString());
                 user.setPhone(Objects.requireNonNull(etPhone.getText()).toString());
-                user.setDate(Objects.requireNonNull(etDate.getText()).toString());
+                user.setBirthDate(Objects.requireNonNull(etBirthDate.getText()).toString());
 
                 if (rdMale.isChecked())
                     user.setGender(rdMale.getText().toString());
