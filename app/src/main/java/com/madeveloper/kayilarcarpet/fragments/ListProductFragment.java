@@ -16,10 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.ferfalk.simplesearchview.utils.DimensUtils;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -105,7 +105,6 @@ public class ListProductFragment extends BaseFragment {
 
         productAdapter.setOnItemClick((int pos, Product product) -> {
             Bundle bundle = new Bundle();
-
             bundle.putString(DescriptionProductFragment.ARG_PRODUCT, new Gson().toJson(product));
 
             onNavigateFragment.onNavigate(R.id.descriptionProductFragment, bundle);

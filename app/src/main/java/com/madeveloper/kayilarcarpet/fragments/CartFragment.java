@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.madeveloper.kayilarcarpet.R;
@@ -31,6 +31,8 @@ import java.util.List;
 public class CartFragment extends BaseFragment {
 
     private OnNavigateFragment onNavigateFragment;
+    private List<Product> productList;
+    CartAdapter cartAdapter;
 
     public CartFragment() {
         // Required empty public constructor
@@ -53,9 +55,6 @@ public class CartFragment extends BaseFragment {
         return binding.getRoot();
     }
 
-
-    CartAdapter cartAdapter;
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -66,10 +65,9 @@ public class CartFragment extends BaseFragment {
         binding.cartRv.setLayoutManager(layoutManager);
         binding.cartRv.setAdapter(cartAdapter);
 
-        List<Product> productList = ProductUtil.getCartProductList(getContext());
-        cartAdapter.setProductList(productList);
 
-        getCountTotalItem(productList);
+
+        setUpAdapter();
 
 
         cartAdapter.setOnItemClick((int pos, Product product) -> {
@@ -78,42 +76,48 @@ public class CartFragment extends BaseFragment {
             onNavigateFragment.onNavigate(R.id.descriptionProductFragment, bundle);
         });
 
-        binding.checkoutBt.setOnClickListener(view1 -> {
 
-
-
-showEditDialog();
-
-
-        });
-
+        binding.checkoutBt.setOnClickListener(view1 -> showEditDialog());
 
     }
 
     private void showEditDialog() {
+
+        if(productList.isEmpty()){
+            Toast.makeText(getContext(), "no item inside in cart", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         FragmentManager fm = getActivity().getSupportFragmentManager();
-        PaymentDialog paymentDialog = new PaymentDialog(getContext());
+        PaymentDialog paymentDialog = new PaymentDialog(productList);
+
 
         paymentDialog.show(fm, "fragment_edit_name");
 
+        paymentDialog.setOnOrderSend(this::setUpAdapter);
+
     }
+
     @SuppressLint("SetTextI18n")
-    private void getCountTotalItem(List<Product> productList) {
+    private void setUpAdapter() {
 
-        binding.itemTx.setText(getString(R.string.item)+" " + productList.size());
-        
+        productList = ProductUtil.getCartProductList(getContext());
+        cartAdapter.setProductList(productList);
+
+        binding.itemTx.setText(getString(R.string.item) + " " + productList.size());
+
         double total = 0.0;
-        Product product ;
+        Product product;
 
-        for (int i = 0 ; i < productList.size() ; i++){
+        for (int i = 0; i < productList.size(); i++) {
             product = productList.get(i);
-            total +=  product.getPrice();
+            total += product.getPrice();
         }
         NumberFormat formatter = new DecimalFormat("###,###,##0.00");
 
         String priceFormatter = formatter.format(total);
 
-        binding.totalTx.setText("JD "+priceFormatter);
+        binding.totalTx.setText("JD " + priceFormatter);
 
 
     }

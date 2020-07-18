@@ -26,6 +26,7 @@ public class AccountFragment extends BaseFragment {
 
 
     public AccountFragment() {
+
     }
 
 

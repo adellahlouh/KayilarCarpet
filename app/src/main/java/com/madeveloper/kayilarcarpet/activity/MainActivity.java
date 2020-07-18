@@ -27,6 +27,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
+import androidx.navigation.Navigator;
 
 public class MainActivity extends AppCompatActivity implements OnNavigateFragment {
 
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
     public void onNavigate(int resFragmentId, @Nullable Bundle bundle) {
         navController.navigate(resFragmentId, bundle);
     }
+
 
     @Override
     public void onFragmentShow(BaseFragment currentFragment) {

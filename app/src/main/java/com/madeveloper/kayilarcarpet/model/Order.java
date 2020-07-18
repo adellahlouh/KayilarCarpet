@@ -1,5 +1,9 @@
 package com.madeveloper.kayilarcarpet.model;
 
+import com.google.firebase.firestore.ServerTimestamp;
+
+import java.util.Date;
+
 public class Order {
 
     private String id;
@@ -7,11 +11,14 @@ public class Order {
     private String nameUser;
     private String address;
     private String phone;
-    private Object time;
+
+    @ServerTimestamp
+    private Date time;
 
     double total;
 
     public Order() {
+
     }
 
     public String getId() {
@@ -54,13 +61,10 @@ public class Order {
         this.phone = phone;
     }
 
-    public Object getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Object time) {
-        this.time = time;
-    }
 
     public double getTotal() {
         return total;

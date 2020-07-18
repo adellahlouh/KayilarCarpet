@@ -12,6 +12,7 @@ import java.util.List;
 public class ProductUtil {
 
 
+
     public static List<String> getFavIDsList(Context context) {
         return Util.loadArrayFromPreference(context, Constant.FAV_ID_PREF);
     }
@@ -75,6 +76,12 @@ public class ProductUtil {
 
     }
 
+    public static void removeAllCart(Context context){
+        Util.saveArrayToPreference(context, Constant.CART_ID_PREF, new ArrayList<>());
+        Util.saveArrayToPreference(context, Constant.CART_PRODUCT_PREF, new ArrayList<>());
+
+    }
+
     public static void updateProductListCart(Context context, Product product, boolean add) {
 
         //save for id list
@@ -103,6 +110,9 @@ public class ProductUtil {
         Util.saveArrayToPreference(context, Constant.CART_PRODUCT_PREF, gsonProductList);
 
     }
+
+
+
 
 
 }
