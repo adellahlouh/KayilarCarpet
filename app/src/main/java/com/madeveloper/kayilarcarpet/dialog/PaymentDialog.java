@@ -38,17 +38,17 @@ import java.util.List;
 
 public class PaymentDialog extends DialogFragment {
 
-
     DialogPaymentBinding binding;
+
     private List<Product> productList;
 
     private OnOrderSend onOrderSend;
 
-
     private KProgressHUD kProgressHUD;
+
     private double total;
 
-    public PaymentDialog( List<Product> productList) {
+    public PaymentDialog(List<Product> productList) {
         this.productList = productList;
 
 
@@ -59,7 +59,7 @@ public class PaymentDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(LayoutInflater.from(getContext()), R.layout.dialog_payment, null, false);
 
-        kProgressHUD = Util.getProgressDialog(getContext(),"Loading ...");
+        kProgressHUD = Util.getProgressDialog(getContext(), "Loading ...");
 
         return binding.getRoot();
     }
@@ -77,7 +77,7 @@ public class PaymentDialog extends DialogFragment {
 
     private void sendOrder() {
 
-        if(total <= 0)
+        if (total <= 0)
             return;
 
 
@@ -88,7 +88,7 @@ public class PaymentDialog extends DialogFragment {
 
         WriteBatch batch = FirebaseFirestore.getInstance().batch();
 
-        Order order  = new Order();
+        Order order = new Order();
 
         order.setId(ordersRef.getId());
         order.setNameUser(user.name);
@@ -96,10 +96,18 @@ public class PaymentDialog extends DialogFragment {
         order.setPhone(user.phone);
         order.setTotal(total);
 
-        batch.set(ordersRef,order);
+        if (!binding.addressEt.getText().toString().isEmpty())
+            order.setAddress(binding.addressEt.getText().toString());
+        else {
+            binding.addressEt.setError("Enter your Address");
+            kProgressHUD.dismiss();
+            return;
+        }
 
-        for(Product product : productList){
-            batch.set(ordersRef.collection("product").document(product.getId()),product);
+        batch.set(ordersRef, order);
+
+        for (Product product : productList) {
+            batch.set(ordersRef.collection("product").document(product.getId()), product);
         }
 
 
@@ -107,7 +115,7 @@ public class PaymentDialog extends DialogFragment {
 
             kProgressHUD.dismiss();
             ProductUtil.removeAllCart(getContext());
-            if(onOrderSend != null)
+            if (onOrderSend != null)
                 onOrderSend.onSend();
 
             Toast.makeText(getContext(), "You Order is send", Toast.LENGTH_SHORT).show();
@@ -150,8 +158,7 @@ public class PaymentDialog extends DialogFragment {
         this.onOrderSend = onOrderSend;
     }
 
-
-    public interface OnOrderSend{
+    public interface OnOrderSend {
         void onSend();
     }
 
