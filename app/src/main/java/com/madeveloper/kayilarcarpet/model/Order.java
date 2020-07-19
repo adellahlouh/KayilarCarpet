@@ -11,6 +11,8 @@ public class Order {
     private String nameUser;
     private String address;
     private String phone;
+    private OrderState state = OrderState.Pending;
+
 
     @ServerTimestamp
     private Date time;
@@ -65,7 +67,6 @@ public class Order {
         return time;
     }
 
-
     public double getTotal() {
         return total;
     }
@@ -73,4 +74,15 @@ public class Order {
     public void setTotal(double total) {
         this.total = total;
     }
+
+    public OrderState getState() {
+        return state;
+    }
+
+    public enum OrderState {
+        Pending,
+        OnProgress,
+        Delivered,
+    }
+
 }

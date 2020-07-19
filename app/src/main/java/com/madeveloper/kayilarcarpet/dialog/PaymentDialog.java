@@ -41,9 +41,7 @@ public class PaymentDialog extends DialogFragment {
     DialogPaymentBinding binding;
 
     private List<Product> productList;
-
     private OnOrderSend onOrderSend;
-
     private KProgressHUD kProgressHUD;
 
     private double total;
