@@ -70,4 +70,7 @@
     <string name="delivery_state">State</string>
     <string name="orderHistory">Order History</string>
     <string name="no_item_added_yet">no item added yet !</string>
+    <string name="promo_not_valid">This Code is not valid</string>
+    <string name="cant_use_same_promo">Can\'t use same promo in different order</string>
+    <string name="sale">Sale</string>
 </resources>

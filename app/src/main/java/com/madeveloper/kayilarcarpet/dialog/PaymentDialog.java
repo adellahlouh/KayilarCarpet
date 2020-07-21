@@ -2,7 +2,6 @@ package com.madeveloper.kayilarcarpet.dialog;
 
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,17 +14,15 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.WriteBatch;
-import com.google.firestore.v1.DocumentTransform;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.databinding.DialogPaymentBinding;
 import com.madeveloper.kayilarcarpet.model.Order;
 import com.madeveloper.kayilarcarpet.model.Product;
+import com.madeveloper.kayilarcarpet.model.Promo;
 import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Constant;
 import com.madeveloper.kayilarcarpet.utils.ProductUtil;
@@ -33,6 +30,7 @@ import com.madeveloper.kayilarcarpet.utils.Util;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -45,6 +43,7 @@ public class PaymentDialog extends DialogFragment {
     private KProgressHUD kProgressHUD;
 
     private double total;
+    private Promo promo;
 
     public PaymentDialog(List<Product> productList) {
         this.productList = productList;
@@ -71,6 +70,9 @@ public class PaymentDialog extends DialogFragment {
 
         binding.buyBt.setOnClickListener(v -> sendOrder());
 
+        binding.applyPromoBt.setOnClickListener(view1 -> applyPromo());
+
+
     }
 
     private void sendOrder() {
@@ -93,6 +95,12 @@ public class PaymentDialog extends DialogFragment {
         order.setUserId(user.uid);
         order.setPhone(user.phone);
         order.setTotal(total);
+
+        if(promo !=null){
+            order.setPromoUsed(promo.getValue());
+            order.setDiscountPercentage(promo.getPercentage());
+
+        }
 
         if (!binding.addressEt.getText().toString().isEmpty())
             order.setAddress(binding.addressEt.getText().toString());
@@ -121,6 +129,65 @@ public class PaymentDialog extends DialogFragment {
             dismiss();
 
         });
+
+
+
+
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void applyPromo() {
+
+        String promoKey = binding.couponEt.getText().toString().trim();
+
+
+        if (promoKey.isEmpty())
+            return;
+
+        User user = Util.getUser(getContext());
+
+        KProgressHUD progressHUD = Util.getProgressDialog(getContext(), "Checking ...");
+        progressHUD.show();
+
+        DocumentReference promoRef = FirebaseFirestore.getInstance().collection(Constant.PROMO_COL)
+                .document(promoKey);
+
+
+        promoRef.get().addOnSuccessListener(documentSnapshot -> {
+
+            promo = documentSnapshot.toObject(Promo.class);
+
+
+            if (!documentSnapshot.exists() || !promo.getVisible()) {
+
+                progressHUD.dismiss();
+                Toast.makeText(getContext(), getString(R.string.promo_not_valid), Toast.LENGTH_LONG).show();
+
+                return;
+            }
+
+            promoRef.collection("used").document(user.uid).get().addOnSuccessListener(documentSnapshot1 -> {
+
+                progressHUD.dismiss();
+
+                if(documentSnapshot1.exists()){
+                    Toast.makeText(getContext(), getString(R.string.cant_use_same_promo), Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
+                promoRef.collection("used").document(user.uid).set(new HashMap<>());
+
+                binding.applyPromoBt.setVisibility(View.GONE);
+                binding.percentPromoTv.setVisibility(View.VISIBLE);
+                binding.percentPromoTv.setText(getString(R.string.sale)+" %"+promo.getPercentage());
+
+
+            });
+
+
+        });
+
 
 
     }

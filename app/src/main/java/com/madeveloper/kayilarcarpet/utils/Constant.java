@@ -11,6 +11,8 @@ public class Constant {
     public static final String PRODUCTS_COL = "Products";
     public static final String SLIDER_IMAGE_COL = "Slider";
     public static final String ORDERS_COL = "Orders";
+    public static final String PROMO_COL = "Promo";
+
 
     public static final String APP_PREF_NAME = "APP";
     public static final String FAV_ID_PREF = "FAV_IDS";

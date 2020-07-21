@@ -11,6 +11,10 @@ public class Order {
     private String nameUser;
     private String address;
     private String phone;
+
+    private String promoUsed;
+    private int discountPercentage;
+
     private OrderState state = OrderState.Pending;
 
 
@@ -77,6 +81,22 @@ public class Order {
 
     public OrderState getState() {
         return state;
+    }
+
+    public String getPromoUsed() {
+        return promoUsed;
+    }
+
+    public void setPromoUsed(String promoUsed) {
+        this.promoUsed = promoUsed;
+    }
+
+    public int getDiscountPercentage() {
+        return discountPercentage;
+    }
+
+    public void setDiscountPercentage(int discountPercentage) {
+        this.discountPercentage = discountPercentage;
     }
 
     public enum OrderState {
