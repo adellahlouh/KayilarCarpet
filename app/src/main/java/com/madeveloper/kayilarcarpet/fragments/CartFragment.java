@@ -104,6 +104,9 @@ public class CartFragment extends BaseFragment {
         productList = ProductUtil.getCartProductList(getContext());
         cartAdapter.setProductList(productList);
 
+        if(productList.isEmpty())
+            binding.emptyView.setVisibility(View.VISIBLE);
+
         binding.itemTx.setText(getString(R.string.item) + " " + productList.size());
 
         double total = 0.0;

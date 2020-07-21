@@ -61,4 +61,13 @@
     <string name="enter_your_address">Enter your Address</string>
     <string name="cash_on_delivery">Cash on delivery</string>
     <string name="free_delivery">Free delivery</string>
+    <string name="search_hint">search ..</string>
+    <string name="pending">Pending</string>
+    <string name="on_progress">On Progress</string>
+    <string name="delivered_done">Delivered</string>
+    <string name="all">All</string>
+    <string name="address">Address</string>
+    <string name="delivery_state">State</string>
+    <string name="orderHistory">Order History</string>
+    <string name="no_item_added_yet">no item added yet !</string>
 </resources>

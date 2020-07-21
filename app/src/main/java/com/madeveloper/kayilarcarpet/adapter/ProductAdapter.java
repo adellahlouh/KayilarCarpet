@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,11 +25,11 @@ import com.madeveloper.kayilarcarpet.utils.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> implements Filterable {
 
     private Context context;
     private boolean isEnglish;
-    private List<Product> productList;
+    private List<Product> productList, productListOriginal;
     private OnItemClick onItemClick;
 
     List<String> favIdProduct, cartIdProduct;
@@ -36,6 +38,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         this.context = context;
 
         productList = new ArrayList<>();
+        productListOriginal = new ArrayList<>();
 
         isEnglish = Util.isEnglishDevice();
 
@@ -46,6 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     public void setProductList(List<Product> productList) {
 
         this.productList = productList;
+        this.productListOriginal = productList;
         notifyDataSetChanged();
     }
 
@@ -94,7 +98,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
 
         holder.itemView.setOnClickListener(view -> {
-            assert onItemClick != null;
+            if(onItemClick != null)
             onItemClick.onClick(position, product);
         });
 
@@ -108,6 +112,47 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     public void setOnItemClick(OnItemClick onItemClick) {
         this.onItemClick = onItemClick;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                FilterResults results = new FilterResults();
+                String key = charSequence.toString().trim();
+
+                if (key.isEmpty()) {
+
+                    results.values = productListOriginal;
+
+                    return results;
+                }
+
+
+                List<Product> listHolder = new ArrayList<>();
+
+                for (Product product : productListOriginal) {
+                    if (product.getNameAr().toLowerCase().contains(key) || product.getNameEn().toLowerCase().contains(key)
+                            || product.getDesAr().toLowerCase().contains(key)
+                            || product.getDesEn().toLowerCase().contains(key))
+                        listHolder.add(product);
+
+                }
+
+                results.values = listHolder;
+
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                productList = (List<Product>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -83,6 +83,7 @@ dependencies {
 
     //Search bar
     implementation 'com.github.Ferfalk:SimpleSearchView:0.1.5'
+    implementation 'com.github.mancj:MaterialSearchBar:0.8.2'
 
 
 

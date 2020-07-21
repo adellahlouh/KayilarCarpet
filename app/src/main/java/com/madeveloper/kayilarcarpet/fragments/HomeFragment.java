@@ -76,7 +76,7 @@ public class HomeFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         onNavigateFragment.onFragmentShow(this);
-        homeViewModel =new ViewModelProvider(this).get(HomeViewModel.class);
+        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
 
         refSlider = FirebaseFirestore.getInstance().collection(Constant.SLIDER_IMAGE_COL);
@@ -99,10 +99,15 @@ public class HomeFragment extends BaseFragment {
             onNavigateFragment.onNavigate(R.id.productsFragment, bundle);
         });
 
+        binding.searchBtn.setOnClickListener(view1 -> {
+            onNavigateFragment.onNavigate(R.id.filterFragment, null);
+        });
+
         createSliderDetails();
         createSectionDetails();
 
     }
+
 
     void createSliderDetails() {
         binding.imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using SliderLayout.IndicatorAnimations. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!

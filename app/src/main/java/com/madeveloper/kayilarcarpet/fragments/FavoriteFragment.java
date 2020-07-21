@@ -20,6 +20,8 @@ import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.utils.ProductUtil;
 
+import java.util.List;
+
 public class FavoriteFragment extends BaseFragment {
 
     private OnNavigateFragment onNavigateFragment;
@@ -54,7 +56,10 @@ public class FavoriteFragment extends BaseFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         binding.favoriteRv.setLayoutManager(layoutManager);
         binding.favoriteRv.setAdapter(productAdapter);
-        productAdapter.setProductList(ProductUtil.getFavProductList(getContext()));
+
+        List<Product> productFavList = ProductUtil.getFavProductList(getContext());
+
+        productAdapter.setProductList(productFavList);
 
         productAdapter.setOnItemClick((int pos, Product product) -> {
 
@@ -64,6 +69,8 @@ public class FavoriteFragment extends BaseFragment {
 
         });
 
+        if(productFavList.isEmpty())
+            binding.emptyView.setVisibility(View.VISIBLE);
 
 
     }

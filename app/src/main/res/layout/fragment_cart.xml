@@ -3,19 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorPrimaryDark"
             android:elevation="16dp"
+            android:orientation="horizontal"
             android:paddingTop="16dp"
             android:paddingBottom="4dp"
-            android:background="@color/colorPrimaryDark"
-            android:orientation="horizontal"
             android:weightSum="2">
 
             <TextView
@@ -47,32 +49,57 @@
 
         </LinearLayout>
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cart_rv"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_above="@id/checkout_bt"
+            android:layout_below="@id/view1" />
 
-        <FrameLayout
+        <LinearLayout
+            android:id="@+id/emptyView"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="UseCompoundDrawables"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="94dp"
+                android:layout_height="94dp"
+                android:src="@drawable/ic_empty_cart"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/no_item_added_yet" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/checkout_bt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
+            android:text="@string/checkout"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            app:cornerRadius="4dp" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/checkout_bt"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:layout_margin="8dp"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:text="@string/checkout"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="17sp"
-                app:cornerRadius="4dp" />
 
-        </FrameLayout>
-
-    </LinearLayout>
+    </RelativeLayout>
 
 </layout>

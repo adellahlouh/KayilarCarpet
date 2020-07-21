@@ -21,7 +21,7 @@ import com.madeveloper.kayilarcarpet.utils.Util;
 public class AccountFragment extends BaseFragment {
 
 
-    FragmentAccountBinding binding ;
+    FragmentAccountBinding binding;
     private OnNavigateFragment onNavigateFragment;
 
 
@@ -40,7 +40,7 @@ public class AccountFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_account, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false);
         return binding.getRoot();
     }
 
@@ -53,11 +53,12 @@ public class AccountFragment extends BaseFragment {
 
         User user = Util.getUser(getContext());
 
-        binding.nameEt.setText("    "+user.getName());
-        binding.phoneEt.setText("    "+"+962"+user.getPhone());
-        binding.birthDateEt.setText("    "+user.getBirthDate());
-        binding.genderEt.setText("    "+user.getGender());
+        binding.nameEt.setText("    " + user.getName());
+        binding.phoneEt.setText("    " + "+962" + user.getPhone());
+        binding.birthDateEt.setText("    " + user.getBirthDate());
+        binding.genderEt.setText("    " + user.getGender());
 
+        binding.historyBt.setOnClickListener(view1 -> onNavigateFragment.onNavigate(R.id.ordersHistoryFragment, null));
 
     }
 }

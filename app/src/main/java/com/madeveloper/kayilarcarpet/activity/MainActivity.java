@@ -14,8 +14,10 @@ import com.madeveloper.kayilarcarpet.fragments.BaseFragment;
 import com.madeveloper.kayilarcarpet.fragments.CartFragment;
 import com.madeveloper.kayilarcarpet.fragments.DescriptionProductFragment;
 import com.madeveloper.kayilarcarpet.fragments.FavoriteFragment;
+import com.madeveloper.kayilarcarpet.fragments.FilterProductsFragment;
 import com.madeveloper.kayilarcarpet.fragments.HomeFragment;
 import com.madeveloper.kayilarcarpet.fragments.ListProductFragment;
+import com.madeveloper.kayilarcarpet.fragments.OrdersHistoryFragment;
 import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
 import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Util;
@@ -51,8 +53,6 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -66,13 +66,13 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
                     navController.popBackStack(R.id.homeFragment, false);
 
                 } else if (tab.getPosition() == 1) {
-                    navController.navigate(R.id.cartFragment,null,navOptions);
+                    navController.navigate(R.id.cartFragment, null, navOptions);
 
                 } else if (tab.getPosition() == 2) {
 
-                    navController.navigate(R.id.favoriteFragment,null,navOptions);
-                }else if (tab.getPosition() == 3){
-                    navController.navigate(R.id.accountFragment,null,navOptions);
+                    navController.navigate(R.id.favoriteFragment, null, navOptions);
+                } else if (tab.getPosition() == 3) {
+                    navController.navigate(R.id.accountFragment, null, navOptions);
 
                 }
             }
@@ -125,13 +125,24 @@ public class MainActivity extends AppCompatActivity implements OnNavigateFragmen
 
             TabLayout.Tab tab = tabLayout.getTabAt(1);
             tab.select();
-        }else if (currentFragment instanceof AccountFragment){
+
+        } else if (currentFragment instanceof AccountFragment) {
             Util.showBarFromActivity(this, false);
             tabLayout.setVisibility(View.VISIBLE);
             TabLayout.Tab tab = tabLayout.getTabAt(3);
             tab.select();
 
-        }
+        } else if (currentFragment instanceof FilterProductsFragment) {
+            Util.showBarFromActivity(this, true);
+            setTitle(currentFragment.getTitle());
+            tabLayout.setVisibility(View.GONE);
+        } else if (currentFragment instanceof OrdersHistoryFragment) {
+            Util.showBarFromActivity(this, true);
+            setTitle(currentFragment.getTitle());
+            tabLayout.setVisibility(View.GONE);
+        } else
+            setTitle(currentFragment.getTitle());
+
 
     }
 

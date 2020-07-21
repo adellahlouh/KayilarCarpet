@@ -1,18 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.FavoriteFragment">
+<layout xmlns:tools="http://schemas.android.com/tools">
 
-
-    <androidx.recyclerview.widget.RecyclerView
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/favorite_rv"/>
+        tools:context=".fragments.FavoriteFragment">
 
 
-</FrameLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorite_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/emptyView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:ignore="UseCompoundDrawables"
+            tools:visibility="visible">
+
+            <ImageView
+                android:layout_width="94dp"
+                android:layout_height="94dp"
+                android:src="@drawable/ic_star"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="@string/no_item_added_yet" />
+
+        </LinearLayout>
+
+
+    </FrameLayout>
 </layout>

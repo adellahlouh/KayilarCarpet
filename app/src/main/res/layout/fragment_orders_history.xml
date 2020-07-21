@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.order.OrderActivity">
+
+        <RadioGroup
+            android:id="@+id/group_rd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="invisible"
+            tools:visibility="visible"
+            android:layout_marginBottom="8dp"
+            android:checkedButton="@id/all_rd"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/all_rd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/all"
+                android:textSize="12sp"
+                tools:ignore="SmallSp" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/pending_rd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/pending"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/onProgress_rd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/on_progress"
+
+                android:textColor="#3F51B5"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/delivered_rd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/poppins_medium"
+                android:text="@string/delivered_done"
+                android:textColor="#4CAF50"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+
+        </RadioGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_order"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/group_rd"
+            tools:listitem="@layout/card_order" />
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+             />
+
+    </RelativeLayout>
+
+</layout>
