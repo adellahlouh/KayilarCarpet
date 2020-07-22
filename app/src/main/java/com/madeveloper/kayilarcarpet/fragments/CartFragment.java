@@ -84,7 +84,7 @@ public class CartFragment extends BaseFragment {
     private void showEditDialog() {
 
         if(productList.isEmpty()){
-            Toast.makeText(getContext(), "no item inside in cart", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.no_item_inside_in_cart, Toast.LENGTH_SHORT).show();
             return;
         }
 

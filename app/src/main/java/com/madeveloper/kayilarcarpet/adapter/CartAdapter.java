@@ -74,7 +74,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
 
             holder.oldPrice.setText(product.getOldPrice() + " JD");
-            holder.offerPercent_tv.setText("OFF " + percent + "%");
+            holder.offerPercent_tv.setText(context.getString(R.string.off) + percent + "%");
         } else {
             holder.oldPrice.setVisibility(View.GONE);
             holder.offerPercent_tv.setVisibility(View.GONE);

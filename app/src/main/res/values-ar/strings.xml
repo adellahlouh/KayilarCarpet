@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kayilar Carpet</string>
+
+    <string name="login">تسجيل الدخول</string>
+    <string name="enter_your_full_name">ادخل الاسم الرباعي</string>
+    <string name="enter_your_phone_number">ادخل رقم هاتفك</string>
+    <string name="yyyy_mm_dd">YYYY/MM/DD</string>
+    <string name="verification_code">رمز التأكيد</string>
+    <string name="there_was_some_error_in_login_in">حدث خطأ في تسجيل الدخول.</string>
+    <string name="dismiss">تجاهل</string>
+    <string name="the_verification_code_entered_was_invalid">رمز التحقق الذي تم إدخاله غير صالح</string>
+    <string name="please_enter_verfi_code">يرجى إدخال رمز التحقق!</string>
+    <string name="resend_code_one_more_time">إعادة إرسال الرمز مرة أخرى.</string>
+    <string name="enter_your_age">أدخل عمرك</string>
+    <string name="phone_number">رقم الهاتف</string>
+    <string name="add_your_phone_number">أضف رقم هاتفك</string>
+    <string name="birth_date">تاريخ الميلاد</string>
+    <string name="enter_your_phone_number_in_order_to_send_your_otp_security_code">أدخل رقم هاتفك لإرسال رمز أمان OTP الخاص بك.</string>
+    <string name="sign_up">انشاء حساب جديد</string>
+    <string name="male">ذكر</string>
+    <string name="female">انثى</string>
+    <string name="you_have_already_account">هل لديك حساب بالفعل؟</string>
+    <string name="check_code">التحقق من الرمز</string>
+    <string name="previous">السابق</string>
+    <string name="select_your_gender">اختر جنسك</string>
+    <string name="login_number_phone">رقم هاتف تسجيل الدخول</string>
+    <string name="you_don_t_have_an_account">ليس لديك حساب؟</string>
+    <string name="upload_data">تحميل البيانات …</string>
+    <string name="this_user_already_exists">هذا المستخدم موجود بالفعل!</string>
+    <string name="this_number_is_not_sign_up_before_please_sign_up_first">هذا الرقم غير مسجل من قبل ، يرجى الاشتراك أولاً.</string>
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="cart">عربة التسوق</string>
+    <string name="favorite">المفضلة</string>
+    <string name="account">الحساب</string>
+    <string name="shop">تسوق</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="enter_coupon_code">أدخل رمز القسيمة</string>
+    <string name="apply">تطبيق</string>
+    <string name="subtotal">المجموع الفرعي </string>
+    <string name="total">المجموع الكلي</string>
+    <string name="remove">حذف</string>
+    <string name="buy_now">اشتري الآن</string>
+    <string name="checkout">الدفع</string>
+    <string name="remove_from_cart">إزالة من السلة</string>
+    <string name="add_to_cart">أضف إلى السلة</string>
+    <string name="item">عنصر : </string>
+    <string name="show_order_history">إظهار سجل الطلبات</string>
+    <string name="enter_your_address">أدخل عنوانك</string>
+    <string name="cash_on_delivery">الدفع عند الاستلام</string>
+    <string name="free_delivery">توصيل مجاني</string>
+    <string name="search_hint">بحث ..</string>
+    <string name="pending">قيد الانتظار</string>
+    <string name="on_progress">في المعالجة</string>
+    <string name="delivered_done">تم التوصيل</string>
+    <string name="all">الجميع</string>
+    <string name="address">عنوان</string>
+    <string name="delivery_state">حالة</string>
+    <string name="orderHistory">تاريخ الطلب</string>
+    <string name="no_item_added_yet">لم يتم إضافة أي عنصر حتى الآن!</string>
+    <string name="promo_not_valid">هذا الرمز غير صالح</string>
+    <string name="cant_use_same_promo">لا يمكن استخدام نفس الخصم على طلب اخر مختلف</string>
+    <string name="sale">خصم</string>
+    <string name="your_order_is_send">تم ارسال طلبك بنجاح</string>
+    <string name="please_wait">الرجاء الانتظار</string>
+    <string name="off">خصم</string>
+    <string name="checking">تدقيق …</string>
+    <string name="no_item_inside_in_cart">لا توجد عناصر في سلة التسوق</string>
+    <string name="logout">تسجيل الخروج</string>
+
+
+</resources>

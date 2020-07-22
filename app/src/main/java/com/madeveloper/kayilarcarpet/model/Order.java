@@ -13,7 +13,7 @@ public class Order {
     private String phone;
 
     private String promoUsed;
-    private int discountPercentage;
+    private double discountPercentage;
 
     private OrderState state = OrderState.Pending;
 
@@ -91,11 +91,11 @@ public class Order {
         this.promoUsed = promoUsed;
     }
 
-    public int getDiscountPercentage() {
+    public double getDiscountPercentage() {
         return discountPercentage;
     }
 
-    public void setDiscountPercentage(int discountPercentage) {
+    public void setDiscountPercentage(double discountPercentage) {
         this.discountPercentage = discountPercentage;
     }
 

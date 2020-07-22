@@ -5,7 +5,7 @@ public class Promo {
     String key ;
     String value ;
     boolean visible;
-    int percentage ;
+    double percentage ;
 
 
     public Promo() {
@@ -24,7 +24,7 @@ public class Promo {
         this.visible = visible;
     }
 
-    public void setPercentage(int percentage) {
+    public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
 
@@ -40,7 +40,7 @@ public class Promo {
         return visible;
     }
 
-    public int getPercentage() {
+    public double getPercentage() {
         return percentage;
     }
 }

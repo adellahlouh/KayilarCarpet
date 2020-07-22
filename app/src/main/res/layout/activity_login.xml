@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/background"
+    android:background="#F6F6F6"
     tools:context=".activity.LoginActivity">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:src="@mipmap/ic_launcher_round"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="32dp"
@@ -28,7 +28,7 @@
         android:layout_margin="32dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="12dp"
-        app:cardElevation="8dp"
+        app:cardElevation="16dp"
         >
 
         <RelativeLayout
@@ -219,7 +219,7 @@
                 android:id="@+id/vLine"
                 android:layout_width="3dp"
                 android:layout_height="32dp"
-                android:background="#FFFFFF"
+                android:background="@color/colorPrimary"
                 android:layout_below="@+id/cardVerification"
                 android:layout_centerHorizontal="true"
                 />
@@ -231,6 +231,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="8dp">

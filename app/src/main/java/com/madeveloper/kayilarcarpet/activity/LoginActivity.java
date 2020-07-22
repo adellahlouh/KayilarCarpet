@@ -24,7 +24,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.hbb20.CountryCodePicker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.madeveloper.kayilarcarpet.R;
-import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Constant;
 import com.madeveloper.kayilarcarpet.utils.Util;
 
@@ -59,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             getSupportActionBar().hide();
         }
 
-        progressHUD = Util.getProgressDialog(this, "Please wait");
+        progressHUD = Util.getProgressDialog(this, getString(R.string.please_wait));
 
 
         parentLayout = findViewById(android.R.id.content);

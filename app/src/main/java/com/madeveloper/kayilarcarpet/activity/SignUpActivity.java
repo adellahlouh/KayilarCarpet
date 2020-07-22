@@ -44,10 +44,6 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUpActivity extends AppCompatActivity {
 
-
-    User userModel;
-
-
     TextInputEditText etName, etPhone, etBirthDate;
     MaterialButton btSignUp, btVerification;
     MaterialRadioButton rdMale, rdFemale;
@@ -176,6 +172,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     void updateCalender() {
@@ -258,7 +255,7 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(new Intent(SignUpActivity.this, MainActivity.class));
                 finish();
             }else {
-                DocumentReference userDocument = db.collection(Constant.USERS_COLLECTION).document(firebaseUser.getUid());
+                DocumentReference userDocument = db.collection(Constant.USERS_COL).document(firebaseUser.getUid());
 
                 User user = new User();
 
@@ -266,6 +263,7 @@ public class SignUpActivity extends AppCompatActivity {
                 user.setName(Objects.requireNonNull(etName.getText()).toString());
                 user.setPhone(Objects.requireNonNull(etPhone.getText()).toString());
                 user.setBirthDate(Objects.requireNonNull(etBirthDate.getText()).toString());
+                user.setLanguage("en");
 
                 if (rdMale.isChecked())
                     user.setGender(rdMale.getText().toString());

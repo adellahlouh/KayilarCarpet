@@ -97,7 +97,7 @@ public class DescriptionProductFragment extends BaseFragment {
             int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
 
             binding.offerTx.setVisibility(View.VISIBLE);
-            binding.offerTx.setText("OFF "+percent+"%");
+            binding.offerTx.setText(getContext().getString(R.string.off)+percent+"%");
 
         }
 

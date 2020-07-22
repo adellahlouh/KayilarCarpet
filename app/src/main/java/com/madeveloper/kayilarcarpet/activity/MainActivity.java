@@ -4,11 +4,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.material.tabs.TabLayout;
 import com.madeveloper.kayilarcarpet.R;
-import com.madeveloper.kayilarcarpet.databinding.FragmentFavoriteBinding;
 import com.madeveloper.kayilarcarpet.fragments.AccountFragment;
 import com.madeveloper.kayilarcarpet.fragments.BaseFragment;
 import com.madeveloper.kayilarcarpet.fragments.CartFragment;
@@ -19,9 +16,7 @@ import com.madeveloper.kayilarcarpet.fragments.HomeFragment;
 import com.madeveloper.kayilarcarpet.fragments.ListProductFragment;
 import com.madeveloper.kayilarcarpet.fragments.OrdersHistoryFragment;
 import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
-import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Util;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +24,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
-import androidx.navigation.Navigator;
 
 public class MainActivity extends AppCompatActivity implements OnNavigateFragment {
 

@@ -25,6 +25,7 @@ import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.model.Promo;
 import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Constant;
+import com.madeveloper.kayilarcarpet.utils.FCM;
 import com.madeveloper.kayilarcarpet.utils.ProductUtil;
 import com.madeveloper.kayilarcarpet.utils.Util;
 
@@ -44,10 +45,10 @@ public class PaymentDialog extends DialogFragment {
 
     private double total;
     private Promo promo;
+    Order order;
 
     public PaymentDialog(List<Product> productList) {
         this.productList = productList;
-
 
     }
 
@@ -88,7 +89,7 @@ public class PaymentDialog extends DialogFragment {
 
         WriteBatch batch = FirebaseFirestore.getInstance().batch();
 
-        Order order = new Order();
+        order = new Order();
 
         order.setId(ordersRef.getId());
         order.setNameUser(user.name);
@@ -96,7 +97,7 @@ public class PaymentDialog extends DialogFragment {
         order.setPhone(user.phone);
         order.setTotal(total);
 
-        if(promo !=null){
+        if (promo != null) {
             order.setPromoUsed(promo.getValue());
             order.setDiscountPercentage(promo.getPercentage());
 
@@ -105,7 +106,7 @@ public class PaymentDialog extends DialogFragment {
         if (!binding.addressEt.getText().toString().isEmpty())
             order.setAddress(binding.addressEt.getText().toString());
         else {
-            binding.addressEt.setError("Enter your Address");
+            binding.addressEt.setError(getString(R.string.enter_your_address));
             kProgressHUD.dismiss();
             return;
         }
@@ -124,13 +125,17 @@ public class PaymentDialog extends DialogFragment {
             if (onOrderSend != null)
                 onOrderSend.onSend();
 
-            Toast.makeText(getContext(), "You Order is send", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getContext().getString(R.string.your_order_is_send), Toast.LENGTH_LONG).show();
+
+            FCM.sendNotificationToTopic(getContext(),
+                    FCM.createNotificationObject(user.getName() + " طلب جديد من العميل ",
+                            user.getPhone() + "رقم هاتف العميل : "),
+                    null, Constant.TOPIC_ADMIN
+            );
 
             dismiss();
 
         });
-
-
 
 
     }
@@ -146,7 +151,7 @@ public class PaymentDialog extends DialogFragment {
 
         User user = Util.getUser(getContext());
 
-        KProgressHUD progressHUD = Util.getProgressDialog(getContext(), "Checking ...");
+        KProgressHUD progressHUD = Util.getProgressDialog(getContext(), getString(R.string.checking));
         progressHUD.show();
 
         DocumentReference promoRef = FirebaseFirestore.getInstance().collection(Constant.PROMO_COL)
@@ -170,7 +175,7 @@ public class PaymentDialog extends DialogFragment {
 
                 progressHUD.dismiss();
 
-                if(documentSnapshot1.exists()){
+                if (documentSnapshot1.exists()) {
                     Toast.makeText(getContext(), getString(R.string.cant_use_same_promo), Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -180,14 +185,22 @@ public class PaymentDialog extends DialogFragment {
 
                 binding.applyPromoBt.setVisibility(View.GONE);
                 binding.percentPromoTv.setVisibility(View.VISIBLE);
-                binding.percentPromoTv.setText(getString(R.string.sale)+" %"+promo.getPercentage());
+                binding.percentPromoTv.setText(getString(R.string.sale) + " %" + promo.getPercentage());
+
+                double discount = promo.getPercentage() / 100;
+
+
+                total = total - (total * discount);
+                NumberFormat formatter = new DecimalFormat("###,###,##0.00");
+
+                String priceFormatter = formatter.format(total);
+                binding.totalTx.setText(priceFormatter + " JD");
 
 
             });
 
 
         });
-
 
 
     }
@@ -207,7 +220,6 @@ public class PaymentDialog extends DialogFragment {
         String priceFormatter = formatter.format(total);
 
         binding.totalTx.setText("JD " + priceFormatter);
-
     }
 
     @Override

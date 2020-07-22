@@ -1,7 +1,12 @@
 package com.madeveloper.kayilarcarpet.utils;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.util.DisplayMetrics;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -14,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.madeveloper.kayilarcarpet.R;
+import com.madeveloper.kayilarcarpet.activity.MainActivity;
 import com.madeveloper.kayilarcarpet.model.User;
 
 import org.jetbrains.annotations.NotNull;
@@ -81,6 +87,7 @@ public class Util {
         String userGson = new Gson().toJson(user);
 
         editor.putString(Constant.USER_PREF, userGson);
+
         editor.apply();
 
     }
@@ -155,5 +162,19 @@ public class Util {
     public static SharedPreferences getAppSharedPref(Context context) {
         return context.getSharedPreferences(Constant.APP_PREF_NAME, Context.MODE_PRIVATE);
     }
+
+    public static void setLocale(Context context ,String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = context.getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        Intent refresh = new Intent(context, MainActivity.class);
+        context.startActivity(refresh);
+
+
+    }
+
 
 }

@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">KayilarCarpet</string>
+    <string name="app_name">Kayilar Carpet</string>
+
     <string name="login">Login</string>
     <string name="enter_your_full_name">Enter your full name</string>
     <string name="enter_your_phone_number">Enter your phone number</string>
@@ -24,7 +25,7 @@
     <string name="select_your_gender">Select your Gender</string>
     <string name="login_number_phone">Login Number Phone</string>
     <string name="you_don_t_have_an_account">You don\'t have an Account?</string>
-    <string name="upload_data">Upload Data ...</string>
+    <string name="upload_data">Upload Data …</string>
     <string name="this_user_already_exists">This user already exists</string>
     <string name="this_number_is_not_sign_up_before_please_sign_up_first">This number is not Sign Up before, please Sign Up first.</string>
     <string name="home">Home</string>
@@ -61,7 +62,7 @@
     <string name="enter_your_address">Enter your Address</string>
     <string name="cash_on_delivery">Cash on delivery</string>
     <string name="free_delivery">Free delivery</string>
-    <string name="search_hint">search ..</string>
+    <string name="search_hint">Search ..</string>
     <string name="pending">Pending</string>
     <string name="on_progress">On Progress</string>
     <string name="delivered_done">Delivered</string>
@@ -73,4 +74,10 @@
     <string name="promo_not_valid">This Code is not valid</string>
     <string name="cant_use_same_promo">Can\'t use same promo in different order</string>
     <string name="sale">Sale</string>
+    <string name="your_order_is_send">You Order is send</string>
+    <string name="please_wait">Please wait</string>
+    <string name="off">\"OFF \"</string>
+    <string name="checking">Checking …</string>
+    <string name="no_item_inside_in_cart">No item inside in cart</string>
+    <string name="logout">Logout</string>
 </resources>

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,7 +27,9 @@ import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
 
 import com.madeveloper.kayilarcarpet.model.Section;
 import com.madeveloper.kayilarcarpet.model.Slider;
+import com.madeveloper.kayilarcarpet.model.User;
 import com.madeveloper.kayilarcarpet.utils.Constant;
+import com.madeveloper.kayilarcarpet.utils.FCM;
 import com.madeveloper.kayilarcarpet.utils.Util;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
@@ -43,6 +46,7 @@ public class HomeFragment extends BaseFragment {
     private CollectionReference refSection;
     private OnNavigateFragment onNavigateFragment;
     private HomeViewModel homeViewModel;
+    User user ;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -78,6 +82,8 @@ public class HomeFragment extends BaseFragment {
         onNavigateFragment.onFragmentShow(this);
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
+        user = Util.getUser(getContext());
+        FCM.subscribeToFcmTopic(user.getUid());
 
         refSlider = FirebaseFirestore.getInstance().collection(Constant.SLIDER_IMAGE_COL);
         refSection = FirebaseFirestore.getInstance().collection(Constant.SECTIONS_COL);

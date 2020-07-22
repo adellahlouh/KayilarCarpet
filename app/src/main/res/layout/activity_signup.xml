@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:focusableInTouchMode="true"
-    android:background="@drawable/background"
+    android:background="#F6F6F6"
     tools:context=".activity.SignUpActivity">
 
     <ViewFlipper
@@ -22,8 +22,8 @@
 
             <ImageView
                 android:id="@+id/img_logo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="16dp"
                 android:scaleType="fitXY"
@@ -39,7 +39,7 @@
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/add_your_phone_number"
-                android:textColor="#FFFFFF"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_marginEnd="32dp"
                 android:gravity="center"
                 android:text="@string/enter_your_phone_number_in_order_to_send_your_otp_security_code"
-                android:textColor="#F3EFEF"
+                android:textColor="#C4212121"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
                 android:layout_margin="32dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
+                app:cardElevation="32dp">
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -102,7 +102,6 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="32dp"
-
                         android:hint="@string/birth_date">
 
 
@@ -258,7 +257,7 @@
 
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
-                app:cardElevation="8dp">
+                app:cardElevation="16dp">
 
                 <RelativeLayout
                     android:id="@+id/layVerification"
@@ -328,7 +327,7 @@
                 android:layout_height="32dp"
                 android:layout_below="@+id/cardVerification"
                 android:layout_centerHorizontal="true"
-                android:background="#FFFFFF" />
+                android:background="@color/black" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -337,6 +336,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                android:layout_marginBottom="32dp"
                 app:cardBackgroundColor="#FFFFFF"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="8dp">
