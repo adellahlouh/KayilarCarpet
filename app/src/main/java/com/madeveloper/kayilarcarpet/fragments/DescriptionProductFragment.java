@@ -49,7 +49,7 @@ public class DescriptionProductFragment extends BaseFragment {
 
     @Override
     public String getTitle() {
-        return Util.isEnglishDevice()? product.getNameEn(): product.getNameAr();
+        return Util.isEnglishDevice(getContext())? product.getNameEn(): product.getNameAr();
     }
 
     @Override
@@ -85,7 +85,7 @@ public class DescriptionProductFragment extends BaseFragment {
         loadSlider();
 
         binding.nameProductTx.setText(getTitle());
-        binding.descriptionTv.setText(Util.isEnglishDevice() ? product.getDesEn() : product.getDesEn());
+        binding.descriptionTv.setText(Util.isEnglishDevice(getContext()) ? product.getDesEn() : product.getDesAr());
 
         binding.productPriceTv.setText(product.getPrice()+" JD");
 
@@ -176,6 +176,8 @@ public class DescriptionProductFragment extends BaseFragment {
 
 
 
+
+
         List<Slider> sliderList = new ArrayList<>();
         for(String url : product.getImageUrls()){
             Slider slider = new Slider();
@@ -186,6 +188,9 @@ public class DescriptionProductFragment extends BaseFragment {
 
         sliderAdapter.setSliderList(sliderList);
         binding.imageSlider.dataSetChanged();
+
+
+       // binding.imageSlider.setOn
 
     }
 

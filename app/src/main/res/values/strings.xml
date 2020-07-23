@@ -80,4 +80,6 @@
     <string name="checking">Checking …</string>
     <string name="no_item_inside_in_cart">No item inside in cart</string>
     <string name="logout">Logout</string>
+    <string name="failed_download_image">Failed to download the image, please try again.</string>
+    <string name="language_pref">en</string>
 </resources>

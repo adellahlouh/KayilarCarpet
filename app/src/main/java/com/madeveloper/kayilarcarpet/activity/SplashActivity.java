@@ -3,6 +3,7 @@ package com.madeveloper.kayilarcarpet.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.WindowManager;
 
@@ -47,10 +48,11 @@ public class SplashActivity extends AppCompatActivity {
                 User user = documentSnapshot.toObject(User.class);
 
 
-
                 Util.saveUser(this, user);
 
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                SharedPreferences prefs = getSharedPreferences(getString(R.string.language_pref), MODE_PRIVATE);
+
+                Util.setLocale(this, prefs.getString("language", "en"));
                 finish();
             });
 

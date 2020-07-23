@@ -64,7 +64,7 @@ public class ListProductFragment extends BaseFragment {
 
     @Override
     public String getTitle() {
-        return Util.isEnglishDevice() ? section.getNameEn() : section.getNameAr();
+        return Util.isEnglishDevice(getContext()) ? section.getNameEn() : section.getNameAr();
     }
 
     @Override

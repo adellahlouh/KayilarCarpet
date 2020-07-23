@@ -2,15 +2,18 @@ package com.madeveloper.kayilarcarpet.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.madeveloper.kayilarcarpet.R;
+import com.madeveloper.kayilarcarpet.activity.ImageFullActivity;
 import com.madeveloper.kayilarcarpet.model.Slider;
 import com.madeveloper.kayilarcarpet.utils.Constant;
 import com.madeveloper.kayilarcarpet.utils.Util;
@@ -48,8 +51,18 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.SliderAdapter
 
         Slider slider = sliderList.get(position);
 
-        holder.txSliderDes.setText(Util.isEnglishDevice()? slider.getTitleEn(): slider.getTitleAr());
+        holder.txSliderDes.setText(Util.isEnglishDevice(context) ? slider.getTitleEn() : slider.getTitleAr());
         Glide.with(context).load(slider.getImageUrl()).into(holder.imgSlider);
+
+        holder.itemView.setOnClickListener(view -> {
+
+            Intent intent = new Intent(context, ImageFullActivity.class);
+
+            intent.putExtra("img", slider.getImageUrl());
+
+            context.startActivity(intent);
+
+        });
     }
 
     @Override

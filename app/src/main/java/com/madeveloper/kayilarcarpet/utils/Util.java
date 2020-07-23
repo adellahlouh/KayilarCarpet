@@ -1,5 +1,6 @@
 package com.madeveloper.kayilarcarpet.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import static android.content.Context.MODE_PRIVATE;
 import static android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
 
 public class Util {
@@ -80,7 +82,7 @@ public class Util {
 
 
     public static void saveUser(Context context, User user) {
-        SharedPreferences preferences = context.getSharedPreferences(Constant.USER_PREF, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(Constant.USER_PREF, MODE_PRIVATE);
 
         SharedPreferences.Editor editor = preferences.edit();
 
@@ -94,7 +96,7 @@ public class Util {
 
     public static User getUser(Context context) {
 
-        SharedPreferences preferences = context.getSharedPreferences(Constant.USER_PREF, Context.MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(Constant.USER_PREF, MODE_PRIVATE);
 
         String userGson = preferences.getString(Constant.USER_PREF, "");
 
@@ -120,8 +122,18 @@ public class Util {
     }
 
 
-    public static boolean isEnglishDevice() {
-        return Locale.getDefault().getLanguage().equals("en");
+    public static boolean isEnglishDevice(Context context) {
+        SharedPreferences prefs = context.getSharedPreferences(context.getString(R.string.language_pref), MODE_PRIVATE);
+
+        boolean lang = true ;
+        if (prefs.getString("language","en").equals(Constant.ENGLISH_LANGUAGE)){
+            lang = true ;
+        }
+        else if (prefs.getString("language","en").equals(Constant.ARABIC_LANGUAGE)){
+            lang = false;
+        }
+
+        return lang;
     }
 
 
@@ -160,16 +172,19 @@ public class Util {
 
 
     public static SharedPreferences getAppSharedPref(Context context) {
-        return context.getSharedPreferences(Constant.APP_PREF_NAME, Context.MODE_PRIVATE);
+        return context.getSharedPreferences(Constant.APP_PREF_NAME, MODE_PRIVATE);
     }
 
-    public static void setLocale(Context context ,String lang) {
+    public static void setLocale(Context context, String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = context.getResources();
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
+
+        @SuppressLint("CommitPrefEdits")
+
         Intent refresh = new Intent(context, MainActivity.class);
         context.startActivity(refresh);
 

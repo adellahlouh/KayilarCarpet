@@ -37,7 +37,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         productList = new ArrayList<>();
 
-        isEnglish = Util.isEnglishDevice();
+        isEnglish = Util.isEnglishDevice(context);
 
         cartIdProduct = ProductUtil.getCartIDsList(context);
     }

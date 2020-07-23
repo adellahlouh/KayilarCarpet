@@ -80,6 +80,8 @@
     <string name="checking">تدقيق …</string>
     <string name="no_item_inside_in_cart">لا توجد عناصر في سلة التسوق</string>
     <string name="logout">تسجيل الخروج</string>
+    <string name="failed_download_image">فشل في تحميل الصورة ، الرجاء المحاولة مرة اخرى.</string>
+    <string name="language_pref">en</string>
 
 
 </resources>

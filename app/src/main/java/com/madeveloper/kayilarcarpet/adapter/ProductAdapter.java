@@ -40,7 +40,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         productList = new ArrayList<>();
         productListOriginal = new ArrayList<>();
 
-        isEnglish = Util.isEnglishDevice();
+        isEnglish = Util.isEnglishDevice(context);
 
         favIdProduct = ProductUtil.getFavIDsList(context);
         cartIdProduct = ProductUtil.getCartIDsList(context);

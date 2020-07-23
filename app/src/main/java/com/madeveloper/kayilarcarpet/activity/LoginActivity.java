@@ -184,7 +184,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 progressHUD.dismiss();
-
                 finish();
             } else {
                 pinView.setLineColor(Color.RED);

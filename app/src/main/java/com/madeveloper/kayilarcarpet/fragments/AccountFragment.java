@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,8 @@ import com.madeveloper.kayilarcarpet.utils.Util;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class AccountFragment extends BaseFragment {
 
@@ -112,6 +115,9 @@ public class AccountFragment extends BaseFragment {
 
         userRef.document(uid).set(user).addOnSuccessListener(aVoid -> {
             Toast.makeText(getContext(), "Change language to : " + language, Toast.LENGTH_SHORT).show();
+            SharedPreferences.Editor editor = getContext().getSharedPreferences(getString(R.string.language_pref), MODE_PRIVATE).edit();
+            editor.putString("language", language);
+            editor.apply();
             Util.setLocale(getContext(), language);
             getActivity().finish();
         });

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.material.button.MaterialButton;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.model.Section;
+import com.madeveloper.kayilarcarpet.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ public class SectionAdapter extends RecyclerView.Adapter<SectionAdapter.ViewHold
 
         Glide.with(context).load(section.getImageUrl()).into(holder.sectionImg);
 
-        holder.titleTx.setText(section.getNameEn());
+        holder.titleTx.setText(Util.isEnglishDevice(context) ? section.getNameEn() : section.getNameAr());
 
         holder.itemView.setOnClickListener(view -> {
             if (onItemClick != null) onItemClick.onClick(position, section);
