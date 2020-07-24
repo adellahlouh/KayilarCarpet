@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.chaos.view.PinView;
@@ -253,6 +254,7 @@ public class SignUpActivity extends AppCompatActivity {
         loginTrackerDoc.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()){
                 startActivity(new Intent(SignUpActivity.this, MainActivity.class));
+                progressHUD.dismiss();
                 finish();
             }else {
                 DocumentReference userDocument = db.collection(Constant.USERS_COL).document(firebaseUser.getUid());
@@ -261,7 +263,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 user.setUid(firebaseUser.getUid());
                 user.setName(Objects.requireNonNull(etName.getText()).toString());
-                user.setPhone(Objects.requireNonNull(etPhone.getText()).toString());
+                user.setPhone("+"+codePicker.getSelectedCountryCode()+Objects.requireNonNull(etPhone.getText()).toString());
                 user.setBirthDate(Objects.requireNonNull(etBirthDate.getText()).toString());
                 user.setLanguage("en");
 

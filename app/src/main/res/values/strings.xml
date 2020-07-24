@@ -51,7 +51,7 @@
     <string name="enter_coupon_code">Enter Coupon Code</string>
     <string name="apply">APPLY</string>
     <string name="subtotal">Subtotal </string>
-    <string name="total">TOTAL</string>
+    <string name="total">TOTAL :</string>
     <string name="remove">Remove</string>
     <string name="buy_now">BUY NOW</string>
     <string name="checkout">Checkout</string>
@@ -76,7 +76,7 @@
     <string name="sale">Sale</string>
     <string name="your_order_is_send">You Order is send</string>
     <string name="please_wait">Please wait</string>
-    <string name="off">\"OFF \"</string>
+    <string name="off">OFF</string>
     <string name="checking">Checking …</string>
     <string name="no_item_inside_in_cart">No item inside in cart</string>
     <string name="logout">Logout</string>

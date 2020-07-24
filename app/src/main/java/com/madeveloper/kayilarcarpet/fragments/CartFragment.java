@@ -120,7 +120,7 @@ public class CartFragment extends BaseFragment {
 
         String priceFormatter = formatter.format(total);
 
-        binding.totalTx.setText("JD " + priceFormatter);
+        binding.totalTx.setText(getContext().getString(R.string.total)+" JD " + priceFormatter);
 
 
     }

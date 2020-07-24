@@ -41,6 +41,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
+            android:layout_toStartOf="@id/applyPromo_bt"
             android:background="#FFFFFF">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -60,9 +61,9 @@
             android:layout_height="60dp"
             android:focusable="true"
             android:clickable="true"
-            android:layout_alignTop="@id/coupon_in"
-            android:layout_alignEnd="@id/coupon_in"
+
             android:layout_alignBottom="@id/coupon_in"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"

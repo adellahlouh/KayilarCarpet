@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusableInTouchMode="true"
     android:background="#F6F6F6"
+    android:focusableInTouchMode="true"
     tools:context=".activity.SignUpActivity">
 
     <ViewFlipper
@@ -16,15 +16,17 @@
         android:layout_height="wrap_content"
         tools:ignore="UselessParent">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="center">
 
             <ImageView
                 android:id="@+id/img_logo"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/ic_launcher_round"
@@ -34,8 +36,8 @@
                 android:id="@+id/txAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/img_logo"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/poppins_medium"
                 android:text="@string/add_your_phone_number"
@@ -46,11 +48,11 @@
                 android:id="@+id/txDes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txAdd"
-                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                android:gravity="center"
+
+android:textAlignment="center"
                 android:text="@string/enter_your_phone_number_in_order_to_send_your_otp_security_code"
                 android:textColor="#C4212121"
                 android:textSize="16sp"
@@ -60,16 +62,16 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txDes"
-                android:layout_centerInParent="true"
                 android:layout_margin="32dp"
                 app:cardBackgroundColor="#FFFFFF"
+                android:layout_gravity="center"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="32dp">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/txName"
@@ -89,6 +91,7 @@
                             android:fontFamily="@font/poppins_medium"
                             android:hint="@string/enter_your_full_name"
                             android:inputType="textPersonName"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -98,7 +101,6 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/txName"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="32dp"
@@ -118,49 +120,53 @@
                             tools:ignore="Autofill,KeyboardInaccessibleWidget,TextFields" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.hbb20.CountryCodePicker
-                        android:id="@+id/codePicker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/txAge"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="30dp"
-                        app:ccp_showFlag="false"
-                        app:ccp_showNameCode="false"
-                        app:ccp_textSize="16sp" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/txPhone"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <LinearLayout
+                        android:id="@+id/lay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/txAge"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="32dp"
-                        android:layout_toEndOf="@id/codePicker">
+                        android:orientation="horizontal">
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etPhone"
+                        <com.hbb20.CountryCodePicker
+                            android:id="@+id/codePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="32dp"
+
+                            app:ccp_showFlag="false"
+                            app:ccp_showNameCode="false"
+                            app:ccp_textSize="16sp" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/txPhone"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableEnd="@drawable/ic_mobile"
-                            android:fontFamily="@font/poppins_medium"
-                            android:hint="@string/phone_number"
-                            android:inputType="phone"
-                            android:maxLength="9"
-                            android:paddingStart="10dp"
-                            android:paddingEnd="10dp"
-                            android:textSize="14sp"
-                            tools:ignore="Autofill,TextFields" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="32dp">
 
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etPhone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:drawableEnd="@drawable/ic_mobile"
+                                android:fontFamily="@font/poppins_medium"
+                                android:hint="@string/phone_number"
+                                android:inputType="phone"
+                                android:maxLength="9"
+                                android:paddingStart="10dp"
+                                android:paddingEnd="10dp"
+                                android:textSize="14sp"
+                                tools:ignore="Autofill,TextFields" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
 
                     <RadioGroup
                         android:id="@+id/rdGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/txPhone"
-                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
                         android:layout_marginTop="16dp"
                         android:orientation="horizontal">
 
@@ -189,7 +195,6 @@
                         android:id="@+id/btLogin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/rdGroup"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
@@ -208,11 +213,9 @@
                         android:id="@+id/layLogin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/btLogin"
-                        android:gravity="center"
-                        android:padding="4dp"
-                        android:layout_centerHorizontal="true"
-                        android:orientation="horizontal">
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="4dp">
 
                         <TextView
                             android:id="@+id/txAlready"
@@ -220,8 +223,8 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:text="@string/you_have_already_account"
-                            android:textSize="12sp"
-                            android:textColor="@color/color_font" />
+                            android:textColor="@color/color_font"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/txLogin"
@@ -236,11 +239,11 @@
 
                             />
                     </LinearLayout>
-                </RelativeLayout>
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -282,8 +285,8 @@
                         android:textSize="14sp"
                         app:itemCount="6"
                         app:itemHeight="34dp"
-                        app:itemWidth="36dp"
                         app:itemRadius="8dp"
+                        app:itemWidth="36dp"
                         app:lineColor="@android:color/darker_gray"
                         app:viewType="rectangle" />
 

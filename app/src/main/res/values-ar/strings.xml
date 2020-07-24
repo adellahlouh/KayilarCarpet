@@ -50,8 +50,8 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="enter_coupon_code">أدخل رمز القسيمة</string>
     <string name="apply">تطبيق</string>
-    <string name="subtotal">المجموع الفرعي </string>
-    <string name="total">المجموع الكلي</string>
+    <string name="subtotal">المجموع الفرعي : </string>
+    <string name="total">المجموع الكلي :</string>
     <string name="remove">حذف</string>
     <string name="buy_now">اشتري الآن</string>
     <string name="checkout">الدفع</string>

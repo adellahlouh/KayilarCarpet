@@ -73,10 +73,10 @@ public class AccountFragment extends BaseFragment {
 
         User user = Util.getUser(getContext());
 
-        binding.nameEt.setText("    " + user.getName());
-        binding.phoneEt.setText("    " + "+962" + user.getPhone());
-        binding.birthDateEt.setText("    " + user.getBirthDate());
-        binding.genderEt.setText("    " + user.getGender());
+        binding.nameEt.setText(user.getName());
+        binding.phoneEt.setText(user.getPhone());
+        binding.birthDateEt.setText(user.getBirthDate());
+        binding.genderEt.setText(user.getGender());
 
 
         if (user.getLanguage().equals(Constant.ARABIC_LANGUAGE)) {

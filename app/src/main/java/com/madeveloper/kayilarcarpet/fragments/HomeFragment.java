@@ -105,9 +105,7 @@ public class HomeFragment extends BaseFragment {
             onNavigateFragment.onNavigate(R.id.productsFragment, bundle);
         });
 
-        binding.searchBtn.setOnClickListener(view1 -> {
-            onNavigateFragment.onNavigate(R.id.filterFragment, null);
-        });
+        binding.searchBtn.setOnClickListener(view1 -> onNavigateFragment.onNavigate(R.id.filterFragment, null));
 
         createSliderDetails();
         createSectionDetails();
