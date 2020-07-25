@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.madeveloper.kayilarcarpet.databinding.CardAddToCartBinding;
 import com.madeveloper.kayilarcarpet.dialog.AddToCartDialog;
+import com.madeveloper.kayilarcarpet.model.CartItem;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.utils.Util;
 
@@ -27,7 +28,7 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
     private List<Product.Size> sizeList;
 
     private List<Product.Size> sizeSelected;
-
+    private OnSizeSelected onSizeSelected;
 
     public AddToCartAdapter(Context context) {
         this.context = context;
@@ -40,11 +41,19 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
         this.sizeList = sizeList;
     }
 
+    public List<Product.Size> getSizeSelected() {
+        return sizeSelected;
+    }
+
+    public void setSizeSelected(List<Product.Size> sizeSelected) {
+        this.sizeSelected = sizeSelected;
+        notifyDataSetChanged();
+    }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CardAddToCartBinding binding =  CardAddToCartBinding.inflate(LayoutInflater.from(context),parent,false);
+        CardAddToCartBinding binding = CardAddToCartBinding.inflate(LayoutInflater.from(context), parent, false);
         return new ViewHolder(binding);
 
     }
@@ -55,19 +64,19 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
 
         Product.Size size = sizeList.get(position);
 
-        holder.binding.sizeTx.setText(size.width+"x"+size.length);
+        holder.binding.sizeTx.setText(size.width + "x" + size.length);
 
-        holder.binding.priceTx.setText(size.price+" JD");
+        holder.binding.priceTx.setText(size.price + " JD");
 
         int posSelected = sizeSelected.indexOf(size);
 
-        if(posSelected != -1){
+        if (posSelected != -1) {
 
-            holder.binding.countTx.setText(sizeSelected.get(posSelected).count+"");
+            holder.binding.countTx.setText(sizeSelected.get(posSelected).count + "");
 
             holder.binding.addToCartCheck.setChecked(true);
 
-        }else {
+        } else {
 
             holder.binding.countTx.setText("1");
 
@@ -78,37 +87,35 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
 
             size.count = Integer.parseInt(holder.binding.countTx.getText().toString());
 
-            Util.getTotal(sizeSelected);
-
-
-            if(b) {
+            if (b)
                 sizeSelected.add(size);
-                Toast.makeText(context, sizeSelected.get(position).count * sizeSelected.get(position).price + "", Toast.LENGTH_SHORT).show();
-            }
             else
-            sizeSelected.remove(size);
+                sizeSelected.remove(size);
 
+
+            if (onSizeSelected != null)
+                onSizeSelected.onSelected(sizeSelected);
         });
 
-        holder.binding.plusBt.setOnClickListener(v->{
+        holder.binding.plusBt.setOnClickListener(v -> {
 
             int count = Integer.parseInt(holder.binding.countTx.getText().toString());
 
-            if (count<100){
-               ++count ;
-               holder.binding.countTx.setText(count+"");
+            if (count < 100) {
+                ++count;
+                holder.binding.countTx.setText(count + "");
             }
 
         });
 
 
-        holder.binding.minusBt.setOnClickListener(v->{
+        holder.binding.minusBt.setOnClickListener(v -> {
 
             int count = Integer.parseInt(holder.binding.countTx.getText().toString());
 
-            if (count > 1 ){
-                --count ;
-                holder.binding.countTx.setText(count+"");
+            if (count > 1) {
+                --count;
+                holder.binding.countTx.setText(count + "");
             }
 
         });
@@ -120,6 +127,8 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
     public void onViewRecycled(@NonNull ViewHolder holder) {
         super.onViewRecycled(holder);
         holder.binding.addToCartCheck.setOnCheckedChangeListener(null);
+        holder.binding.plusBt.setOnClickListener(null);
+        holder.binding.minusBt.setOnClickListener(null);
     }
 
     @Override
@@ -127,12 +136,22 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
         return sizeList.size();
     }
 
-     static class ViewHolder extends RecyclerView.ViewHolder {
+    public void setOnSizeSelected(OnSizeSelected onSizeSelected) {
+        this.onSizeSelected = onSizeSelected;
+    }
+
+    static class ViewHolder extends RecyclerView.ViewHolder {
         CardAddToCartBinding binding;
 
         public ViewHolder(@NonNull CardAddToCartBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+
+    public interface OnSizeSelected {
+
+        void onSelected(List<Product.Size> allSizeSelected);
     }
 }

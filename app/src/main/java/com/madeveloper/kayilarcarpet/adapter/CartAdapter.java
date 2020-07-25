@@ -15,17 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.madeveloper.kayilarcarpet.R;
+import com.madeveloper.kayilarcarpet.model.CartItem;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.utils.ProductUtil;
 import com.madeveloper.kayilarcarpet.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
     Context context ;
-    private List<Product> productList;
+    private List<CartItem> cartItems;
     private boolean isEnglish;
     List<Product.Size> sizeList ;
 
@@ -36,7 +38,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     public CartAdapter(Context context) {
         this.context = context;
 
-        productList = new ArrayList<>();
+        cartItems = new ArrayList<>();
 
         isEnglish = Util.isEnglishDevice(context);
 
@@ -45,9 +47,9 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         sizeList = new ArrayList<>();
     }
 
-    public void setProductList(List<Product> productList /*,List<Product.Size> sizeList*/ ) {
+    public void setCartItems(List<CartItem> cartItems /*,List<Product.Size> sizeList*/ ) {
 
-        this.productList = productList;
+        this.cartItems = cartItems;
         //this.sizeList = sizeList ;
         notifyDataSetChanged();
     }
@@ -63,39 +65,36 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull CartAdapter.ViewHolder holder, int position) {
-        Product product = productList.get(position);
+        CartItem cartItem = cartItems.get(position);
 
-        Glide.with(context).asBitmap().load(product.getImageUrls().get(0)).into(holder.productImg);
+        Glide.with(context).asBitmap().load(cartItem.getImgUrl()).into(holder.productImg);
 
-        holder.nameProductTx.setText(isEnglish ?product.getNameEn() :product.getNameAr());
-
-
+        holder.nameProductTx.setText(isEnglish ?cartItem.getProductNameEn() :cartItem.getProductNameAr());
 
 
-        holder.priceTx.setText(product.getSizePrice().get(position)+ " JD");
+        holder.priceTx.setText(context.getString(R.string.jd,String.format(Locale.getDefault(),"%.2f", cartItem.getTotalPrice())));
 
-        if (product.isOffer()) {
+        if (cartItem.isOffer()) {
             holder.oldPrice.setVisibility(View.VISIBLE);
             holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
            // int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
 
-           // holder.oldPrice.setText(product.getOldPrice() + " JD");
-           // holder.offerPercent_tv.setText(context.getString(R.string.off) + percent + "%");
+            holder.oldPrice.setText(cartItem.getOldTotalPrice() + " JD");
+            holder.offerPercent_tv.setText(context.getString(R.string.off) + cartItem.getOfferPercent() + "%");
         } else {
             holder.oldPrice.setVisibility(View.GONE);
             holder.offerPercent_tv.setVisibility(View.GONE);
         }
 
-        holder.descriptionTx.setText(isEnglish ? product.getDesEn() : product.getDesAr());
-
+        holder.descriptionTx.setText(isEnglish ? cartItem.getProductDesEn() : cartItem.getProductDesAr());
 
 
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return cartItems.size();
     }
 
     public void setOnItemClick(ProductAdapter.OnItemClick onItemClick) {

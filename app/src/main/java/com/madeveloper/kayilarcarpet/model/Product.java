@@ -102,12 +102,12 @@ public class Product {
         return isOffer;
     }
 
-    public void setOffer(boolean offer) {
-        isOffer = offer;
-    }
-
     public void setVisible(boolean visible) {
         isVisible = visible;
+    }
+
+    public void setOffer(boolean offer) {
+        isOffer = offer;
     }
 
     public boolean isVisible() {

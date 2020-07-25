@@ -82,8 +82,13 @@
     <string name="logout">تسجيل الخروج</string>
     <string name="failed_download_image">فشل في تحميل الصورة ، الرجاء المحاولة مرة اخرى.</string>
     <string name="language_pref">en</string>
+    <string name="jd"> %1$s دينار</string>
+
     <string name="select_size">Select Size :</string>
-    <string name="total_0_00_jd">Total : 0.00 JD</string>
+    <string name="total_0_00_jd">المجموع: %1$s دينار</string>
+    <string name="select_one_size_at_least">Select one size at least</string>
+    <string name="show_sizes">إظهار الأحجام</string>
+    <string name="size_avi">%1$s x احجام</string>
 
 
 </resources>

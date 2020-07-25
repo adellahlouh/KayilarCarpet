@@ -90,33 +90,15 @@ public class DescriptionProductFragment extends BaseFragment {
         binding.nameProductTx.setText(getTitle());
         binding.descriptionTv.setText(Util.isEnglishDevice(getContext()) ? product.getDesEn() : product.getDesAr());
 
-        List<Product.Size> sizeList = new ArrayList<>();
-        List<String> json = product.getSizePrice() ;
-        sizeList.add(Product.Size.getFromJson(json.get(0)));
-
-
-        binding.productPriceTv.setText(sizeList.get(0).price + " JD");
-
-        if (product.isOffer()) {
-            binding.productOldPriceTv.setVisibility(View.VISIBLE);
-            binding.productOldPriceTv.setPaintFlags(binding.productOldPriceTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
-
-
-             binding.productOldPriceTv.setText(sizeList.get(0).price + " JD");
-
-             double price  = sizeList.get(0).price - (sizeList.get(0).price * ( product.getOfferPercent() / 100.0));
-
-             binding.productPriceTv.setText(price+" JD");
-
-
+        if(product.isOffer()){
+            binding.offerTx.setText(getString(R.string.off)+" "+product.getOfferPercent()+"%");
             binding.offerTx.setVisibility(View.VISIBLE);
-
-            binding.offerTx.setText(getContext().getString(R.string.off)+product.getOfferPercent()+"%");
-
         }
 
+
         binding.backBtn.setOnClickListener(view1 -> getActivity().onBackPressed());
+
+        binding.numberOfSizeTv.setText(getString(R.string.size_avi, String.valueOf(product.getSizePrice().size())));
 
         //***detect if product in fav list
         List<String> favIdProduct = ProductUtil.getFavIDsList(getContext());
@@ -125,11 +107,8 @@ public class DescriptionProductFragment extends BaseFragment {
         else
             binding.favBtn.setLiked(false);
 
-        //***detect if product inside cart
-        List<String> cartIdsProduct = ProductUtil.getCartIDsList(getContext());
-        boolean isInCart = cartIdsProduct.contains(product.getId());
-        setupCartBtn(isInCart);
 
+        binding.showSizesBtn.setOnClickListener(v -> ShowDialogAddToCart());
 
         binding.favBtn.setOnLikeListener(new OnLikeListener() {
             @Override
@@ -143,45 +122,14 @@ public class DescriptionProductFragment extends BaseFragment {
             }
         });
 
-
     }
 
-    private void setupCartBtn(boolean isInCart) {
-
-
-        if (isInCart) {
-
-            binding.addToCartBtn.setBackgroundColor(getResources().getColor(R.color.white));
-            binding.addToCartBtn.setTextColor(getResources().getColor(R.color.red));
-            binding.addToCartBtn.setBorderColor(getResources().getColor(R.color.colorPrimaryDark));
-            binding.addToCartBtn.setIconResource(R.drawable.ic_remove_cart);
-            binding.addToCartBtn.setText(getString(R.string.remove_from_cart));
-
-
-        } else {
-
-            binding.addToCartBtn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-            binding.addToCartBtn.setTextColor(getResources().getColor(R.color.white));
-            binding.addToCartBtn.setIconResource(R.drawable.ic_add_shopping_cart);
-            binding.addToCartBtn.setText(getString(R.string.add_to_cart));
-
-        }
-
-        binding.addToCartBtn.setOnClickListener(view -> {
-//           ProductUtil.updateProductListCart(getContext(),product,!isInCart);
-//           setupCartBtn(!isInCart);
-
-            ShowDialogAddToCart();
-
-        });
-
-    }
 
     private void ShowDialogAddToCart() {
 
         FragmentManager manager = getActivity().getSupportFragmentManager();
 
-        AddToCartDialog dialog = new AddToCartDialog(getContext(),product);
+        AddToCartDialog dialog = new AddToCartDialog(getContext(), product);
 
         dialog.show(manager, "fragment_edit_name");
 

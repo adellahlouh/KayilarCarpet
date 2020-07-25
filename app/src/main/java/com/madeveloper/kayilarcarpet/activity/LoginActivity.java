@@ -156,8 +156,6 @@ public class LoginActivity extends AppCompatActivity {
         DocumentReference loginTrackerDoc = db.collection(Constant.TRACKER_USERS_LOGIN).document(numberPhone);
         loginTrackerDoc.get().addOnSuccessListener(documentSnapshot -> {
 
-
-
             if (documentSnapshot.exists()) {
                 PhoneAuthProvider.getInstance().verifyPhoneNumber(
                         numberPhone,        // Phone number to verify
@@ -182,7 +180,7 @@ public class LoginActivity extends AppCompatActivity {
             if (task.isSuccessful()) {
                 pinView.setLineColor(Color.GREEN);
 
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                 progressHUD.dismiss();
                 finish();
             } else {

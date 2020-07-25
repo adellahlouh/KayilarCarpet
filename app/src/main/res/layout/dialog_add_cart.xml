@@ -32,11 +32,22 @@
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:textColor="@color/black"
-                android:textSize="18sp"
+                android:textSize="14sp"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry"
-                android:text="@string/total_0_00_jd" />
+                tools:text="@string/total_0_00_jd" />
 
+            <TextView
+                android:id="@+id/offerPrice_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="top"
+                android:paddingStart="8dp"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="RtlSymmetry"
+                tools:text="12.0" />
 
 
             <Space
@@ -49,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:padding="12dp"
+                android:padding="6dp"
                 fancy:fb_borderColor="@color/white"
                 fancy:fb_borderWidth="1.5dp"
                 fancy:fb_defaultColor="@color/colorPrimary"
@@ -58,7 +69,7 @@
                 fancy:fb_iconResource="@drawable/ic_add_shopping_cart"
                 fancy:fb_radius="4dp"
                 fancy:fb_text="@string/add_to_cart"
-                fancy:fb_textSize="14sp"
+                fancy:fb_textSize="12sp"
                 fancy:fb_useSystemFont="true" />
 
         </LinearLayout>

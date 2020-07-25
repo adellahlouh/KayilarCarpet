@@ -121,7 +121,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
             tools:ignore="UnusedAttribute">
 
             <TextView
-                android:id="@+id/productPrice_tv"
+                android:id="@+id/numberOfSize_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -130,21 +130,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:ignore="RtlSymmetry"
-                tools:text="35 JD" />
-
-            <TextView
-                android:id="@+id/productOldPrice_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:padding="4dp"
-                android:textColor="@color/red"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                tools:ignore="SmallSp"
-                tools:text="16 JD"
-                tools:visibility="visible" />
+                tools:text="@string/size_avi" />
 
             <Space
                 android:layout_width="0dp"
@@ -152,7 +138,7 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 android:layout_weight="1" />
 
             <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/addToCart_btn"
+                android:id="@+id/showSizes_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -162,9 +148,8 @@ I am going to try and get a few things to do in the next couple of days and I wi
                 fancy:fb_defaultColor="@color/colorPrimary"
                 fancy:fb_focusColor="@color/colorAccent"
                 fancy:fb_iconPosition="left"
-                fancy:fb_iconResource="@drawable/ic_add_shopping_cart"
                 fancy:fb_radius="4dp"
-                fancy:fb_text="@string/add_to_cart"
+                fancy:fb_text="@string/show_sizes"
                 fancy:fb_textSize="14sp"
                 fancy:fb_useSystemFont="true" />
 

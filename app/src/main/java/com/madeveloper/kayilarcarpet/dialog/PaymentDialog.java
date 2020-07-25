@@ -20,6 +20,7 @@ import com.google.firebase.firestore.WriteBatch;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.databinding.DialogPaymentBinding;
+import com.madeveloper.kayilarcarpet.model.CartItem;
 import com.madeveloper.kayilarcarpet.model.Order;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.model.Promo;
@@ -39,7 +40,7 @@ public class PaymentDialog extends DialogFragment {
 
     DialogPaymentBinding binding;
 
-    private List<Product> productList;
+    private List<CartItem> cartItems;
     private OnOrderSend onOrderSend;
     private KProgressHUD kProgressHUD;
 
@@ -47,8 +48,8 @@ public class PaymentDialog extends DialogFragment {
     private Promo promo;
     Order order;
 
-    public PaymentDialog(List<Product> productList) {
-        this.productList = productList;
+    public PaymentDialog(List<CartItem> cartItems) {
+        this.cartItems = cartItems;
 
     }
 
@@ -113,8 +114,8 @@ public class PaymentDialog extends DialogFragment {
 
         batch.set(ordersRef, order);
 
-        for (Product product : productList) {
-            batch.set(ordersRef.collection("product").document(product.getId()), product);
+        for (CartItem cartItem : cartItems) {
+            batch.set(ordersRef.collection("cartItems").document(cartItem.getProductId()), cartItem);
         }
 
 
@@ -210,9 +211,9 @@ public class PaymentDialog extends DialogFragment {
 
         total = 0.0;
 
-        for (int i = 0; i < productList.size(); i++) {
-            Product product = productList.get(i);
-            //total += product.getPrice();
+        for (int i = 0; i < cartItems.size(); i++) {
+            CartItem cartItem = cartItems.get(i);
+            total += cartItem.getTotalPrice();
         }
 
         NumberFormat formatter = new DecimalFormat("###,###,##0.00");

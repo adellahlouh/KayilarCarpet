@@ -20,6 +20,7 @@ import com.madeveloper.kayilarcarpet.adapter.CartAdapter;
 import com.madeveloper.kayilarcarpet.databinding.FragmentCartBinding;
 import com.madeveloper.kayilarcarpet.dialog.PaymentDialog;
 import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
+import com.madeveloper.kayilarcarpet.model.CartItem;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.utils.ProductUtil;
 
@@ -31,7 +32,7 @@ import java.util.List;
 public class CartFragment extends BaseFragment {
 
     private OnNavigateFragment onNavigateFragment;
-    private List<Product> productList;
+    private List<CartItem> cartItems;
     CartAdapter cartAdapter;
 
     public CartFragment() {
@@ -83,13 +84,13 @@ public class CartFragment extends BaseFragment {
 
     private void showEditDialog() {
 
-        if(productList.isEmpty()){
+        if(cartItems.isEmpty()){
             Toast.makeText(getContext(), R.string.no_item_inside_in_cart, Toast.LENGTH_SHORT).show();
             return;
         }
 
         FragmentManager fm = getActivity().getSupportFragmentManager();
-        PaymentDialog paymentDialog = new PaymentDialog(productList);
+        PaymentDialog paymentDialog = new PaymentDialog(cartItems);
 
 
         paymentDialog.show(fm, "fragment_edit_name");
@@ -101,27 +102,26 @@ public class CartFragment extends BaseFragment {
     @SuppressLint("SetTextI18n")
     private void setUpAdapter() {
 
-        productList = ProductUtil.getCartProductList(getContext());
-        cartAdapter.setProductList(productList);
+        cartItems = ProductUtil.getCartItemsList(getContext());
+        cartAdapter.setCartItems(cartItems);
 
-        if(productList.isEmpty())
+        if(cartItems.isEmpty())
             binding.emptyView.setVisibility(View.VISIBLE);
 
-        binding.itemTx.setText(getString(R.string.item) + " " + productList.size());
+        binding.itemTx.setText(getString(R.string.item) + " " + cartItems.size());
 
         double total = 0.0;
-        Product product;
+        CartItem cartItem;
 
-        for (int i = 0; i < productList.size(); i++) {
-            product = productList.get(i);
-           // total += product.getPrice();
+        for (int i = 0; i < cartItems.size(); i++) {
+            cartItem = cartItems.get(i);
+            total += cartItem.getTotalPrice();
         }
         NumberFormat formatter = new DecimalFormat("###,###,##0.00");
 
         String priceFormatter = formatter.format(total);
 
         binding.totalTx.setText(getContext().getString(R.string.total)+" JD " + priceFormatter);
-
 
     }
 
