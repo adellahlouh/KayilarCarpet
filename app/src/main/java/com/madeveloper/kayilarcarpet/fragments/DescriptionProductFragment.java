@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.transition.Slide;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import com.like.OnLikeListener;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.adapter.SliderAdapter;
 import com.madeveloper.kayilarcarpet.databinding.FragmentDescriptionProductBinding;
+import com.madeveloper.kayilarcarpet.dialog.AddToCartDialog;
 import com.madeveloper.kayilarcarpet.handler.OnNavigateFragment;
 import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.model.Slider;
@@ -49,16 +51,17 @@ public class DescriptionProductFragment extends BaseFragment {
 
     @Override
     public String getTitle() {
-        return Util.isEnglishDevice(getContext())? product.getNameEn(): product.getNameAr();
+        return Util.isEnglishDevice(getContext()) ? product.getNameEn() : product.getNameAr();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
+
             String gsonProduct = getArguments().getString(ARG_PRODUCT);
 
-            product = new Gson().fromJson(gsonProduct,Product.class);
+            product = new Gson().fromJson(gsonProduct, Product.class);
         }
 
         onNavigateFragment = (OnNavigateFragment) getActivity();
@@ -69,7 +72,7 @@ public class DescriptionProductFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_description_product, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_description_product, container, false);
 
 
         return binding.getRoot();
@@ -87,17 +90,29 @@ public class DescriptionProductFragment extends BaseFragment {
         binding.nameProductTx.setText(getTitle());
         binding.descriptionTv.setText(Util.isEnglishDevice(getContext()) ? product.getDesEn() : product.getDesAr());
 
-        binding.productPriceTv.setText(product.getPrice()+" JD");
+        List<Product.Size> sizeList = new ArrayList<>();
+        List<String> json = product.getSizePrice() ;
+        sizeList.add(Product.Size.getFromJson(json.get(0)));
+
+
+        binding.productPriceTv.setText(sizeList.get(0).price + " JD");
 
         if (product.isOffer()) {
             binding.productOldPriceTv.setVisibility(View.VISIBLE);
-            binding.productOldPriceTv.setPaintFlags(  binding.productOldPriceTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-            binding.productOldPriceTv.setText(product.getOldPrice() + " JD");
+            binding.productOldPriceTv.setPaintFlags(binding.productOldPriceTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-            int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
+
+
+             binding.productOldPriceTv.setText(sizeList.get(0).price + " JD");
+
+             double price  = sizeList.get(0).price - (sizeList.get(0).price * ( product.getOfferPercent() / 100.0));
+
+             binding.productPriceTv.setText(price+" JD");
+
 
             binding.offerTx.setVisibility(View.VISIBLE);
-            binding.offerTx.setText(getContext().getString(R.string.off)+percent+"%");
+
+            binding.offerTx.setText(getContext().getString(R.string.off)+product.getOfferPercent()+"%");
 
         }
 
@@ -105,7 +120,7 @@ public class DescriptionProductFragment extends BaseFragment {
 
         //***detect if product in fav list
         List<String> favIdProduct = ProductUtil.getFavIDsList(getContext());
-        if(favIdProduct.contains(product.getId()))
+        if (favIdProduct.contains(product.getId()))
             binding.favBtn.setLiked(true);
         else
             binding.favBtn.setLiked(false);
@@ -119,12 +134,12 @@ public class DescriptionProductFragment extends BaseFragment {
         binding.favBtn.setOnLikeListener(new OnLikeListener() {
             @Override
             public void liked(LikeButton likeButton) {
-                ProductUtil.updateProductListFav(getContext(),product,true);
+                ProductUtil.updateProductListFav(getContext(), product, true);
             }
 
             @Override
             public void unLiked(LikeButton likeButton) {
-                ProductUtil.updateProductListFav(getContext(),product,false);
+                ProductUtil.updateProductListFav(getContext(), product, false);
             }
         });
 
@@ -134,7 +149,7 @@ public class DescriptionProductFragment extends BaseFragment {
     private void setupCartBtn(boolean isInCart) {
 
 
-        if(isInCart){
+        if (isInCart) {
 
             binding.addToCartBtn.setBackgroundColor(getResources().getColor(R.color.white));
             binding.addToCartBtn.setTextColor(getResources().getColor(R.color.red));
@@ -143,7 +158,7 @@ public class DescriptionProductFragment extends BaseFragment {
             binding.addToCartBtn.setText(getString(R.string.remove_from_cart));
 
 
-        }else {
+        } else {
 
             binding.addToCartBtn.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
             binding.addToCartBtn.setTextColor(getResources().getColor(R.color.white));
@@ -153,9 +168,22 @@ public class DescriptionProductFragment extends BaseFragment {
         }
 
         binding.addToCartBtn.setOnClickListener(view -> {
-            ProductUtil.updateProductListCart(getContext(),product,!isInCart);
-            setupCartBtn(!isInCart);
+//           ProductUtil.updateProductListCart(getContext(),product,!isInCart);
+//           setupCartBtn(!isInCart);
+
+            ShowDialogAddToCart();
+
         });
+
+    }
+
+    private void ShowDialogAddToCart() {
+
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+
+        AddToCartDialog dialog = new AddToCartDialog(getContext(),product);
+
+        dialog.show(manager, "fragment_edit_name");
 
     }
 
@@ -175,11 +203,8 @@ public class DescriptionProductFragment extends BaseFragment {
         binding.imageSlider.setIndicatorEnabled(true);
 
 
-
-
-
         List<Slider> sliderList = new ArrayList<>();
-        for(String url : product.getImageUrls()){
+        for (String url : product.getImageUrls()) {
             Slider slider = new Slider();
             slider.setImageUrl(url);
 
@@ -190,7 +215,7 @@ public class DescriptionProductFragment extends BaseFragment {
         binding.imageSlider.dataSetChanged();
 
 
-       // binding.imageSlider.setOn
+        // binding.imageSlider.setOn
 
     }
 

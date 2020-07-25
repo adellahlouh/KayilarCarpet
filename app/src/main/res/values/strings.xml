@@ -82,4 +82,6 @@
     <string name="logout">Logout</string>
     <string name="failed_download_image">Failed to download the image, please try again.</string>
     <string name="language_pref">en</string>
+    <string name="select_size">Select Size :</string>
+    <string name="total_0_00_jd">Total : 0.00 JD</string>
 </resources>

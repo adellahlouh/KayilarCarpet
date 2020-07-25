@@ -212,7 +212,7 @@ public class PaymentDialog extends DialogFragment {
 
         for (int i = 0; i < productList.size(); i++) {
             Product product = productList.get(i);
-            total += product.getPrice();
+            //total += product.getPrice();
         }
 
         NumberFormat formatter = new DecimalFormat("###,###,##0.00");

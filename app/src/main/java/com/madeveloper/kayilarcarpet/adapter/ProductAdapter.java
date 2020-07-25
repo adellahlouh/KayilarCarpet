@@ -72,11 +72,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         holder.title_tv.setText(isEnglish ? product.getNameEn() : product.getNameAr());
         holder.description_tv.setText(isEnglish ? product.getDesEn() : product.getDesAr());
-        holder.price_tv.setText(product.getPrice() + " JD");
+      //  holder.price_tv.setText(product.getPrice() + " JD");
 
 
         Glide.with(context).asBitmap().load(product.getImageUrls().get(0)).into(holder.productImg);
-
 
         holder.favoriteChk.setChecked(favIdProduct.contains(product.getId()));
 
@@ -88,10 +87,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             holder.oldPrice.setVisibility(View.VISIBLE);
             holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-            int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
+           // int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
 
-            holder.oldPrice.setText(product.getOldPrice() + " JD");
-            holder.offerPercent_tv.setText(context.getString(R.string.off) + percent + "%");
+           // holder.oldPrice.setText(product.getOldPrice() + " JD");
+            //holder.offerPercent_tv.setText(context.getString(R.string.off) + percent + "%");
         } else {
             holder.oldPrice.setVisibility(View.GONE);
             holder.offerPercent_tv.setVisibility(View.GONE);

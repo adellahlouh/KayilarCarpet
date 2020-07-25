@@ -27,6 +27,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     Context context ;
     private List<Product> productList;
     private boolean isEnglish;
+    List<Product.Size> sizeList ;
 
     private ProductAdapter.OnItemClick onItemClick;
     List<String> cartIdProduct;
@@ -40,11 +41,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         isEnglish = Util.isEnglishDevice(context);
 
         cartIdProduct = ProductUtil.getCartIDsList(context);
+
+        sizeList = new ArrayList<>();
     }
 
-    public void setProductList(List<Product> productList) {
+    public void setProductList(List<Product> productList /*,List<Product.Size> sizeList*/ ) {
 
         this.productList = productList;
+        //this.sizeList = sizeList ;
         notifyDataSetChanged();
     }
 
@@ -65,16 +69,19 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         holder.nameProductTx.setText(isEnglish ?product.getNameEn() :product.getNameAr());
 
-        holder.priceTx.setText(product.getPrice()+ " JD");
+
+
+
+        holder.priceTx.setText(product.getSizePrice().get(position)+ " JD");
 
         if (product.isOffer()) {
             holder.oldPrice.setVisibility(View.VISIBLE);
             holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-            int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
+           // int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
 
-            holder.oldPrice.setText(product.getOldPrice() + " JD");
-            holder.offerPercent_tv.setText(context.getString(R.string.off) + percent + "%");
+           // holder.oldPrice.setText(product.getOldPrice() + " JD");
+           // holder.offerPercent_tv.setText(context.getString(R.string.off) + percent + "%");
         } else {
             holder.oldPrice.setVisibility(View.GONE);
             holder.offerPercent_tv.setVisibility(View.GONE);

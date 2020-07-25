@@ -114,7 +114,7 @@ public class CartFragment extends BaseFragment {
 
         for (int i = 0; i < productList.size(); i++) {
             product = productList.get(i);
-            total += product.getPrice();
+           // total += product.getPrice();
         }
         NumberFormat formatter = new DecimalFormat("###,###,##0.00");
 

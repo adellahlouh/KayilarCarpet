@@ -21,6 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.madeveloper.kayilarcarpet.R;
 import com.madeveloper.kayilarcarpet.activity.MainActivity;
+import com.madeveloper.kayilarcarpet.model.Product;
 import com.madeveloper.kayilarcarpet.model.User;
 
 import org.jetbrains.annotations.NotNull;
@@ -192,4 +193,18 @@ public class Util {
     }
 
 
+    public static double getTotal(List<Product.Size> sizeSelected) {
+
+        double total = 0.0 ;
+
+        for (int i = 0 ; i<sizeSelected.size() ; i++){
+
+            Product.Size size = sizeSelected.get(i);
+
+            total = size.count * size.price ;
+
+        }
+
+        return total;
+    }
 }
