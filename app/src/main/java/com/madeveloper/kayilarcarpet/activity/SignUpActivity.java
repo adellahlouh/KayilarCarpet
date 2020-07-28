@@ -263,7 +263,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 user.setUid(firebaseUser.getUid());
                 user.setName(Objects.requireNonNull(etName.getText()).toString());
-                user.setPhone("+"+codePicker.getSelectedCountryCode()+Objects.requireNonNull(etPhone.getText()).toString());
+                user.setPhone(firebaseUser.getPhoneNumber());
                 user.setBirthDate(Objects.requireNonNull(etBirthDate.getText()).toString());
                 user.setLanguage("en");
 

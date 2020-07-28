@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,13 +44,14 @@ public class SplashActivity extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             DocumentReference userDoc = db.collection(Constant.USERS_COL).document(splashAuth.getCurrentUser().getUid());
 
+            Log.e("ssss",splashAuth.getCurrentUser().getUid());
             userDoc.get().addOnSuccessListener(documentSnapshot -> {
 
                 User user = documentSnapshot.toObject(User.class);
 
 
-                Util.saveUser(this, user);
 
+                Util.saveUser(this, user);
                 SharedPreferences prefs = getSharedPreferences(getString(R.string.language_pref), MODE_PRIVATE);
 
                 Util.setLocale(this, prefs.getString("language", "en"));

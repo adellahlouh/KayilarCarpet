@@ -67,9 +67,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         Product product = productList.get(position);
 
-
-        holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-
         holder.title_tv.setText(isEnglish ? product.getNameEn() : product.getNameAr());
         holder.description_tv.setText(isEnglish ? product.getDesEn() : product.getDesAr());
       //  holder.price_tv.setText(product.getPrice() + " JD");
@@ -84,15 +81,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         holder.favoriteChk.setOnCheckedChangeListener((compoundButton, b) -> ProductUtil.updateProductListFav(context, product, b));
 
         if (product.isOffer()) {
-            holder.oldPrice.setVisibility(View.VISIBLE);
-            holder.oldPrice.setPaintFlags(holder.oldPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
-           // int percent = (int) ((1.0 - (product.getPrice() / product.getOldPrice())) * 100.0);
-
-           // holder.oldPrice.setText(product.getOldPrice() + " JD");
-            //holder.offerPercent_tv.setText(context.getString(R.string.off) + percent + "%");
+            holder.offerPercent_tv.setVisibility(View.VISIBLE);
+            holder.offerPercent_tv.setText(context.getString(R.string.off) + product.getOfferPercent() + "%");
         } else {
-            holder.oldPrice.setVisibility(View.GONE);
             holder.offerPercent_tv.setVisibility(View.GONE);
         }
 
@@ -158,7 +150,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         CheckBox favoriteChk;
         ImageView productImg, addCartImg;
-        TextView oldPrice, description_tv, title_tv, price_tv, offerPercent_tv;
+        TextView  description_tv, title_tv,  offerPercent_tv;
         CardView productCard;
 
         public ViewHolder(@NonNull View itemView) {
@@ -167,10 +159,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
             favoriteChk = itemView.findViewById(R.id.favorite_ch);
             title_tv = itemView.findViewById(R.id.title_tx);
             offerPercent_tv = itemView.findViewById(R.id.offerPercent_tx);
-            price_tv = itemView.findViewById(R.id.price_tx);
             description_tv = itemView.findViewById(R.id.description_tx);
             productImg = itemView.findViewById(R.id.product_img);
-            oldPrice = itemView.findViewById(R.id.oldPrice_tx);
             productCard = itemView.findViewById(R.id.product_card);
             addCartImg = itemView.findViewById(R.id.addCart_img);
         }

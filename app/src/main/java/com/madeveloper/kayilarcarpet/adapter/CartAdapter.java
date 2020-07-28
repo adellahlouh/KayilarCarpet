@@ -71,7 +71,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
 
         holder.nameProductTx.setText(isEnglish ?cartItem.getProductNameEn() :cartItem.getProductNameAr());
 
-
         holder.priceTx.setText(context.getString(R.string.jd,String.format(Locale.getDefault(),"%.2f", cartItem.getTotalPrice())));
 
         if (cartItem.isOffer()) {
@@ -87,7 +86,15 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
             holder.offerPercent_tv.setVisibility(View.GONE);
         }
 
-        holder.descriptionTx.setText(isEnglish ? cartItem.getProductDesEn() : cartItem.getProductDesAr());
+
+        StringBuilder desSizeSelected = new StringBuilder();
+
+        for(Product.Size size : cartItem.convertSizeJsonToObjects())
+            desSizeSelected.append(size.width).append("x").append(size.length).append("cm, ").append(size.count).append("#").append("\n");
+
+
+//        holder.descriptionTx.setText(isEnglish ? cartItem.getProductDesEn() : cartItem.getProductDesAr());
+        holder.descriptionTx.setText(desSizeSelected);
 
 
     }

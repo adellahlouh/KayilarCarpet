@@ -5,6 +5,7 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         android:layout_height="wrap_content">
 
 
@@ -17,10 +18,9 @@
             tools:listitem="@layout/card_add_to_cart"/>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            android:elevation="4dp"
             android:gravity="center"
             android:padding="8dp"
             tools:ignore="UnusedAttribute">
@@ -50,29 +50,25 @@
                 tools:text="12.0" />
 
 
-            <Space
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1" />
-
-            <mehdi.sakout.fancybuttons.FancyButton
-                android:id="@+id/addToCart_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:padding="6dp"
-                fancy:fb_borderColor="@color/white"
-                fancy:fb_borderWidth="1.5dp"
-                fancy:fb_defaultColor="@color/colorPrimary"
-                fancy:fb_focusColor="@color/colorAccent"
-                fancy:fb_iconPosition="left"
-                fancy:fb_iconResource="@drawable/ic_add_shopping_cart"
-                fancy:fb_radius="4dp"
-                fancy:fb_text="@string/add_to_cart"
-                fancy:fb_textSize="12sp"
-                fancy:fb_useSystemFont="true" />
-
         </LinearLayout>
+
+        <mehdi.sakout.fancybuttons.FancyButton
+            android:id="@+id/addToCart_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="6dp"
+            android:layout_gravity="center"
+            fancy:fb_borderColor="@color/white"
+            fancy:fb_borderWidth="1.5dp"
+            fancy:fb_defaultColor="@color/colorPrimary"
+            fancy:fb_focusColor="@color/colorAccent"
+            fancy:fb_iconPosition="left"
+            fancy:fb_iconResource="@drawable/ic_add_shopping_cart"
+            fancy:fb_radius="4dp"
+            fancy:fb_text="@string/add_to_cart"
+            fancy:fb_textSize="12sp"
+            fancy:fb_useSystemFont="true" />
 
     </LinearLayout>
 

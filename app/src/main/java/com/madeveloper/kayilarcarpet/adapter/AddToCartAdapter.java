@@ -64,7 +64,7 @@ public class AddToCartAdapter extends RecyclerView.Adapter<AddToCartAdapter.View
 
         Product.Size size = sizeList.get(position);
 
-        holder.binding.sizeTx.setText(size.width + "x" + size.length);
+        holder.binding.sizeTx.setText(size.width + "x" + size.length+"cm");
 
         holder.binding.priceTx.setText(size.price + " JD");
 

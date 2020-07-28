@@ -66,7 +66,7 @@ public class AddToCartDialog extends DialogFragment {
             showTotal(new ArrayList<>());
 
         setupCartBtn(isInCart);
-        getSize();
+        getSizeOfProducts();
 
         adapter.setOnSizeSelected(this::showTotal);
 
@@ -107,12 +107,12 @@ public class AddToCartDialog extends DialogFragment {
             binding.offerPriceTv.setPaintFlags(binding.offerPriceTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
 
 
-            binding.productPriceTv.setText(getString(R.string.total_0_00_jd, String.format(Locale.getDefault(),"%.2f", total)));
-            binding.offerPriceTv.setText(getString(R.string.jd, String.format(Locale.getDefault(),"%.2f", oldPriceTotal)));
+            binding.productPriceTv.setText(getString(R.string.total_0_00_jd, String.format(Locale.getDefault(), "%.2f", total)));
+            binding.offerPriceTv.setText(getString(R.string.jd, String.format(Locale.getDefault(), "%.2f", oldPriceTotal)));
 
         } else {
 
-            binding.productPriceTv.setText(getString(R.string.total_0_00_jd, String.format(Locale.getDefault(),"%.2f", total)));
+            binding.productPriceTv.setText(getString(R.string.total_0_00_jd, String.format(Locale.getDefault(), "%.2f", total)));
             binding.offerPriceTv.setVisibility(View.GONE);
 
         }
@@ -179,12 +179,15 @@ public class AddToCartDialog extends DialogFragment {
         getDialog().getWindow().setAttributes(params);
     }
 
-    private void getSize() {
+    private void getSizeOfProducts() {
 
         List<Product.Size> sizeList = new ArrayList<>();
 
         for (String json : product.getSizePrice()) {
-            sizeList.add(Product.Size.getFromJson(json));
+            Product.Size size = Product.Size.getFromJson(json);
+
+            if (!sizeList.contains(size))
+                sizeList.add(size);
         }
 
         //sizeList.get(0).toString();

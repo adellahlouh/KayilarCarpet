@@ -52,6 +52,7 @@
             android:layout_below="@id/title_tx"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:ellipsize="end"
             android:maxLines="2"
             tools:text="I am going to try and get a few things to do in the next couple of days and I will be able to address the client's objectives and the others will be able to address the client's objectives and the" />
@@ -66,31 +67,6 @@
             android:button="@drawable/check_box_click_favorite"
             />
 
-        <TextView
-            android:id="@+id/oldPrice_tx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description_tx"
-            android:layout_marginStart="2dp"
-            android:layout_toEndOf="@id/price_tx"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="12sp"
-            tools:text="JD 200.00" />
-
-        <TextView
-            android:id="@+id/price_tx"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description_tx"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/poppins_medium"
-            android:textColor="#212121"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="JD 100.00" />
 
         <TextView
             android:id="@+id/offerPercent_tx"
